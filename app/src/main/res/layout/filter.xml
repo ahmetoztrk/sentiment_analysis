@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <CheckBox
+        android:id="@+id/checkBox_activity"
+        android:layout_width="253dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="152dp"
+        android:text="AKTİVİTE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_book" />
+
+    <CheckBox
+        android:id="@+id/check_music"
+        android:layout_width="253dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginBottom="43dp"
+        android:text="MÜZİK"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox_series"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox_series"
+        android:layout_width="253dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="56dp"
+        android:text="DİZİ"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox_film"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_music" />
+
+    <CheckBox
+        android:id="@+id/checkBox_film"
+        android:layout_width="253dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="67dp"
+        android:text="FİLM"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox_book"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_series" />
+
+    <CheckBox
+        android:id="@+id/checkBox_book"
+        android:layout_width="253dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="56dp"
+        android:text="KİTAP"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_film" />
+</androidx.constraintlayout.widget.ConstraintLayout>
