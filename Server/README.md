@@ -1,0 +1,1 @@
+Server gelistirmeleri bu klasorde yapilacaktir.

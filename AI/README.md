@@ -1,0 +1,1 @@
+Yapay Zeka gelistirmeleri bu klasorde yapilacaktir.
