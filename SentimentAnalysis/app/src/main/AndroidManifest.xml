@@ -42,6 +42,9 @@
         <activity
             android:name=".HomeActivity">
         </activity>
+        <activity
+            android:name=".CameraOpenCVActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/sdk/build
+/sdk/build/

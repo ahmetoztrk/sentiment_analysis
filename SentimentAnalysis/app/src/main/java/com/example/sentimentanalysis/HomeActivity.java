@@ -29,7 +29,8 @@ public class HomeActivity extends AppCompatActivity {
         camBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent init = new Intent(HomeActivity.this, CameraOpenCVActivity.class);
+                startActivity(init);
             }
         });
     }
