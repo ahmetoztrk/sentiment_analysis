@@ -14,6 +14,7 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class CameraOpenCVActivity extends CameraActivity {
 
     private Mat mRgba;
     private Mat mGray;
+    FacialExpressionRecognition facialExpressionRecognition;
     CameraBridgeViewBase cameraBridgeViewBase;
     public static int CAMERA_INDEX = 1;
 
@@ -63,6 +65,14 @@ public class CameraOpenCVActivity extends CameraActivity {
         } else {
             Log.d("LOADED", "error");
         }
+
+        try {
+            int inputSize = 48;
+
+            facialExpressionRecognition = new FacialExpressionRecognition(getAssets(), CameraOpenCVActivity.this, "model.tflite", inputSize);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setCameraViewListener() {
@@ -83,6 +93,8 @@ public class CameraOpenCVActivity extends CameraActivity {
             public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
                 mRgba = inputFrame.rgba();
                 mGray = inputFrame.gray();
+
+                mRgba = facialExpressionRecognition.recognizeImage(mRgba);
 
                 return mRgba;
             }
