@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "SentimentAnalysis"
 include ':app'
-include ':sdk'
