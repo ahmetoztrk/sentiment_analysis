@@ -40,8 +40,18 @@
 
 #
 
+:boom: Hata Cozumleri :boom:
+
+* Eger projeyi derlerken <code>SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at 'C:\AndroidStudioProjects\sentiment_analysis\SentimentAnalysis\local.properties'.</code> hatasiyla karsilastiysaniz, Android Studio <code>local.properties</code> dosyasini olusturmamis demektir. Bunu kendiniz olusturmalisiniz.
+
+* Android Studio'da <code>Settings</code> butonuna tiklayin. Acilan panelde <code>Project Structure</code> butonuna tiklayin. <code>SDK Location</code> kismina gelin. Burada SDK uzantisi olmalidir. <code>C:\Users\kullanici_adiniz\AppData\Local\Android\Sdk</code> tamam'a tikladiginizda Android Studio gerekli degisiklikleri yapacaktir.
+
+* Eger yukaridaki yontem ise yaramadiysa, projenin konumuna gidin. <code>C:\AndroidStudioProjects\sentiment_analysis\SentimentAnalysis</code> dizinine yeni bir metin dosyasi olusturun. Metin dosyasini <code>local.properties</code> adiyla kaydedin. Dosyayi duzenleyin ve yerel yapilandirma ayarlarini icine ekleyin. Bu, Android SDK'nin konumunu belirten bir satir olacaktir. <code>sdk.dir=/Users/kullanici_adiniz/Library/Android/sdk</code>
+  
+#
+
 :vibration_mode: Desteklenen Android Surumleri :vibration_mode:
 
-* Minimum: <Code>'API 24' ("Nougat"; Android 7.0)</code>
+* Minimum: <code>'API 24' ("Nougat"; Android 7.0)</code>
 
-* Maximum: <Code>'API 34' ("UpsideDownCake"; Android 14.0)</code>
+* Maximum: <code>'API 34' ("UpsideDownCake"; Android 14.0)</code>
