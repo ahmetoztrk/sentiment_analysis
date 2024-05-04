@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraOpenCVActivity">
+    tools:context=".ImageProcessing.CameraOpenCVActivity">
 
     <org.opencv.android.JavaCamera2View
         android:id="@+id/opencv_java_camera_2_view"

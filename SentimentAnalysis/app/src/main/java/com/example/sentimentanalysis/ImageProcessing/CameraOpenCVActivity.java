@@ -1,12 +1,14 @@
-package com.example.sentimentanalysis;
+package com.example.sentimentanalysis.ImageProcessing;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.example.sentimentanalysis.R;
 
 import org.opencv.android.CameraActivity;
 import org.opencv.android.CameraBridgeViewBase;
@@ -20,11 +22,13 @@ import java.util.List;
 
 public class CameraOpenCVActivity extends CameraActivity {
 
-    private Mat mRgba;
-    private Mat mGray;
+    public static int S_CAMERA_INDEX = 1;
+
     FacialExpressionRecognition facialExpressionRecognition;
+
     CameraBridgeViewBase cameraBridgeViewBase;
-    public static int CAMERA_INDEX = 1;
+
+    Mat mRgba, mGray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +59,10 @@ public class CameraOpenCVActivity extends CameraActivity {
 
     private void init() {
         cameraBridgeViewBase = findViewById(R.id.opencv_java_camera_2_view);
-        cameraBridgeViewBase.setCameraIndex(CAMERA_INDEX);
+        cameraBridgeViewBase.setCameraIndex(S_CAMERA_INDEX);
         cameraBridgeViewBase.setVisibility(SurfaceView.VISIBLE);
 
-        if (OpenCVLoader.initLocal()) {
-            Log.d("LOADED", "success");
-
-            cameraBridgeViewBase.enableView();
-        } else {
-            Log.d("LOADED", "error");
-        }
+        initOpenCV();
 
         try {
             int inputSize = 48;
@@ -72,6 +70,16 @@ public class CameraOpenCVActivity extends CameraActivity {
             facialExpressionRecognition = new FacialExpressionRecognition(getAssets(), CameraOpenCVActivity.this, "model.tflite", inputSize);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void initOpenCV(){
+        if(OpenCVLoader.initLocal()){
+            Toast.makeText(this, "Application is starting...", Toast.LENGTH_SHORT).show();
+
+            cameraBridgeViewBase.enableView();
+        }else{
+            Toast.makeText(this, "Application failed to start!", Toast.LENGTH_SHORT).show();
         }
     }
 

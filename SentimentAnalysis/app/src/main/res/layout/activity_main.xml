@@ -1,18 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFFFF"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/emotion_photoimage_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="500dp" />
+
+    <Button
+        android:id="@+id/camera_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Camera"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="400dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginEnd="125dp" />
+
+    <Button
+        android:id="@+id/statistics_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Statistics"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="325dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginEnd="125dp" />
+
+    <Button
+        android:id="@+id/gui_test_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="GUI Test"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="250dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginEnd="125dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="150dp"
+        android:text="Current Mood"
+        android:textStyle="italic"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/black">
+    </TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/current_mood_tv"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="75dp"
+        android:text="'Neutral'"
+        android:textStyle="italic"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/black" >
+    </TextView>
+</RelativeLayout>

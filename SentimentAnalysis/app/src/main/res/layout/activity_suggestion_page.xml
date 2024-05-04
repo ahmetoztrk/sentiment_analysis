@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/background_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/suggestion_page_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="50dp"
+        android:text="Activities"
+        android:textStyle="italic"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/black">
+    </TextView>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/suggestion_page_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:foregroundGravity="center"
+        android:overScrollMode="never">
+    </androidx.viewpager.widget.ViewPager>
+</RelativeLayout>
