@@ -14,6 +14,8 @@
 
 * TensorFlow Lite (Surum: 0.1.0)
 
+* Gemini API (Surum: 0.5.0)
+
 #
 
 :fleur_de_lis: Projeyi Indirme :fleur_de_lis:
