@@ -7,11 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/background_image_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/suggestion_page_title_tv"
@@ -33,4 +28,140 @@
         android:foregroundGravity="center"
         android:overScrollMode="never">
     </androidx.viewpager.widget.ViewPager>
+
+    <ImageButton
+        android:id="@+id/like_1_image_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:padding="5dp" />
+
+    <ImageButton
+        android:id="@+id/like_2_image_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:padding="5dp">
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+id/like_3_image_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:padding="5dp" />
+
+    <ImageButton
+        android:id="@+id/like_4_image_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:padding="5dp" />
+
+    <ImageButton
+        android:id="@+id/like_5_image_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="325dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:padding="5dp"/>
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="1"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="2"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="3"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="4"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginStart="325dp"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/icon_empty_heart"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="5"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"/>
 </RelativeLayout>
