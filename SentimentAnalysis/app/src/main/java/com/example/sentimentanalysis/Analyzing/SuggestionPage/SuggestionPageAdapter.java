@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageAdapter;
 import com.example.sentimentanalysis.R;
 
 import java.util.ArrayList;
@@ -58,16 +59,10 @@ public class SuggestionPageAdapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position == 0){
-                    Toast.makeText(context, "Position 0", Toast.LENGTH_SHORT).show();
-                }else if(position == 1){
-                    Toast.makeText(context, "Position 1", Toast.LENGTH_SHORT).show();
-                }else if(position == 2){
-                    Toast.makeText(context, "Position 2", Toast.LENGTH_SHORT).show();
-                }else if(position == 3){
-                    Toast.makeText(context, "Position 3", Toast.LENGTH_SHORT).show();
-                }else if(position == 4){
-                    Toast.makeText(context, "Position 4", Toast.LENGTH_SHORT).show();
+                for(int i = 0; i< FilterPageAdapter.S_ADAPTER_SIZE; i++) {
+                    if (position == i) {
+                        Toast.makeText(context, "Position " + i, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

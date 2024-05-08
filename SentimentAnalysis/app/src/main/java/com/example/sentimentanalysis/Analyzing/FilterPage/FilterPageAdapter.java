@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class FilterPageAdapter extends PagerAdapter {
 
+    public static final int S_ADAPTER_SIZE = 5;
+
     ArrayList<FilterPageModel> modelArrayList;
 
     Context context;
@@ -59,31 +61,13 @@ public class FilterPageAdapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position == 0){
-                    Intent intent = new Intent(context, SuggestionPageActivity.class);
-                    intent.putExtra("position", position);
+                for(int i=0; i<5; i++){
+                    if(position == i){
+                        Intent intent = new Intent(context, SuggestionPageActivity.class);
+                        intent.putExtra("position", position);
 
-                    context.startActivity(intent);
-                }else if(position == 1){
-                    Intent intent = new Intent(context, SuggestionPageActivity.class);
-                    intent.putExtra("position", position);
-
-                    context.startActivity(intent);
-                }else if(position == 2){
-                    Intent intent = new Intent(context, SuggestionPageActivity.class);
-                    intent.putExtra("position", position);
-
-                    context.startActivity(intent);
-                }else if(position == 3){
-                    Intent intent = new Intent(context, SuggestionPageActivity.class);
-                    intent.putExtra("position", position);
-
-                    context.startActivity(intent);
-                }else if(position == 4){
-                    Intent intent = new Intent(context, SuggestionPageActivity.class);
-                    intent.putExtra("position", position);
-
-                    context.startActivity(intent);
+                        context.startActivity(intent);
+                    }
                 }
             }
         });

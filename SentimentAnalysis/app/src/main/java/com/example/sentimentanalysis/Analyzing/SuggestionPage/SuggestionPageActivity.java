@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageAdapter;
 import com.example.sentimentanalysis.BuildConfig;
 import com.example.sentimentanalysis.ImageProcessing.MainActivity;
 import com.example.sentimentanalysis.Analyzing.LoadingDialog;
@@ -58,10 +59,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionPageViewPager = findViewById(R.id.suggestion_page_vp);
 
-        title = new String[5];
-        description = new String[5];
+        title = new String[FilterPageAdapter.S_ADAPTER_SIZE];
+        description = new String[FilterPageAdapter.S_ADAPTER_SIZE];
 
-        for(int i=0; i<5; i++){
+        for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
             title[i] = "Title " + i;
             description[i] = "Description " + i;
         }
@@ -91,7 +92,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
     private void loadCards(){
         suggestionPageModelArrayList = new ArrayList<>();
 
-        for(int i=0; i<5; i++){
+        for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
             suggestionPageModelArrayList.add(new SuggestionPageModel(
                     title[i],
                     description[i],
@@ -179,9 +180,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         suggestionLoadingDialog.StartLoadingDialog();
 
         if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give 5 random music names.");
+            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random music names.");
         }else{
-            GeminiAPIGetTitle("Give me 5 random" + MainActivity.S_EMOTION + "music names.");
+            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " music names.");
         }
     }
 
@@ -192,9 +193,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         suggestionLoadingDialog.StartLoadingDialog();
 
         if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give 5 random series names.");
+            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random series names.");
         }else{
-            GeminiAPIGetTitle("Give me 5 random" + MainActivity.S_EMOTION + "series names.");
+            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " series names.");
         }
     }
 
@@ -205,9 +206,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         suggestionLoadingDialog.StartLoadingDialog();
 
         if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give 5 random movie names.");
+            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random movie names.");
         }else{
-            GeminiAPIGetTitle("Give me 5 random" + MainActivity.S_EMOTION + "movie names.");
+            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " movie names.");
         }
     }
 
@@ -218,9 +219,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         suggestionLoadingDialog.StartLoadingDialog();
 
         if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give 5 random book names.");
+            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random book names.");
         }else{
-            GeminiAPIGetTitle("Give me 5 random" + MainActivity.S_EMOTION + "book names.");
+            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " book names.");
         }
     }
 
@@ -231,9 +232,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         suggestionLoadingDialog.StartLoadingDialog();
 
         if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give 5 random activity names.");
+            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random activity names.");
         }else{
-            GeminiAPIGetTitle("Give me 5 random" + MainActivity.S_EMOTION + "activity names.");
+            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " activity names.");
         }
     }
 
@@ -257,7 +258,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     title = resultText.split("\n");
                 }
 
-                for(int i=0; i<5; i++){
+                for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
                     suggestionPageModelArrayList.get(i).setTitle(title[i]);
 
                     title[i] = title[i].substring(2);
