@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.sentimentanalysis.ImageProcessing.MainActivity;
+import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.R;
 
 public class LoadingDialog {
@@ -29,7 +29,7 @@ public class LoadingDialog {
         builder.setCancelable(false);
 
         TextView currentMoodTextView = dialogView.findViewById(R.id.current_mood_text_view);
-        currentMoodTextView.setText(MainActivity.S_EMOTION);
+        currentMoodTextView.setText(Constants.S_EMOTION);
 
         dialog = builder.create();
         dialog.show();

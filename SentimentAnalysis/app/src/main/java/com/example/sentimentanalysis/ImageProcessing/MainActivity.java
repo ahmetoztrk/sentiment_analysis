@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageActivity;
+import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.R;
 import com.example.sentimentanalysis.StatisticsActivity;
 
@@ -29,9 +30,6 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static boolean S_DEBUG_MODE = false;
-    public static String S_EMOTION = "No Emotion";
 
     FacialExpressionRecognition facialExpressionRecognition;
 
@@ -87,13 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initOpenCV(){
         if(OpenCVLoader.initLocal()){
-            if(S_DEBUG_MODE){
+            if(Constants.S_DEBUG_MODE){
                 Toast.makeText(this, "Application is starting...", Toast.LENGTH_SHORT).show();
             }
 
             mat = new Mat();
         }else{
-            if(S_DEBUG_MODE){
+            if(Constants.S_DEBUG_MODE){
                 Toast.makeText(this, "Application failed to start!", Toast.LENGTH_SHORT).show();
             }
         }
@@ -106,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         guiTestBtn = findViewById(R.id.gui_test_btn);
         currentMoodTextView = findViewById(R.id.current_mood_tv);
 
-        currentMoodTextView.setText(String.format("'%s'", S_EMOTION));
+        currentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
     }
 
     private void setButtonsListener(){
@@ -157,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             Utils.bitmapToMat(bitmap,mat);
 
             mat = facialExpressionRecognition.recognizeImage(mat);
-            currentMoodTextView.setText(String.format("'%s'", S_EMOTION));
+            currentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
 
             Utils.matToBitmap(mat,bitmap);
             emotionPhotoImageView.setImageBitmap(bitmap);

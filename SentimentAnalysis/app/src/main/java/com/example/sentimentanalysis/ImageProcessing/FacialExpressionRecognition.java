@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.widget.Toast;
 
+import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.R;
 
 import org.opencv.android.Utils;
@@ -52,7 +52,7 @@ public class FacialExpressionRecognition {
 
         interpreter = new Interpreter(loadModelFile(assetManager,modelPath),options);
 
-        if(MainActivity.S_DEBUG_MODE) {
+        if(Constants.S_DEBUG_MODE) {
             Toast.makeText(context, "Facial Expression Model is loaded.", Toast.LENGTH_SHORT).show();
         }
 
@@ -77,7 +77,7 @@ public class FacialExpressionRecognition {
 
             cascadeClassifier = new CascadeClassifier(mCascadeFile.getAbsolutePath());
 
-            if(MainActivity.S_DEBUG_MODE) {
+            if(Constants.S_DEBUG_MODE) {
                 Toast.makeText(context, "Facial Expression Classifier is loaded.", Toast.LENGTH_SHORT).show();
             }
         }catch (IOException e){
@@ -134,7 +134,7 @@ public class FacialExpressionRecognition {
 
             float emotion_v=(float)Array.get(Array.get(emotion,0),0);
 
-            MainActivity.S_EMOTION = get_emotion_text(emotion_v);
+            Constants.S_EMOTION = get_emotion_text(emotion_v);
 
             /*Imgproc.putText(mat_image,emotion_s+" ("+emotion_v+")",
                     new Point((int)faceArray[i].tl().x+10,(int)faceArray[i].tl().y+20),

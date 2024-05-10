@@ -8,7 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 
-import com.example.sentimentanalysis.ImageProcessing.MainActivity;
+import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.R;
 
 public class FilterPageActivity extends AppCompatActivity {
@@ -33,7 +33,7 @@ public class FilterPageActivity extends AppCompatActivity {
         filterPageViewPager = findViewById(R.id.filter_page_vp);
         filterPageCurrentMoodTextView = findViewById(R.id.current_mood_tv);
 
-        filterPageCurrentMoodTextView.setText(String.format("'%s'", MainActivity.S_EMOTION));
+        filterPageCurrentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
     }
 
     private void loadCards(){

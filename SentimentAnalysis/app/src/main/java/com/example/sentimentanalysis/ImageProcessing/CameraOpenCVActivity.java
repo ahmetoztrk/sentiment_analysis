@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.R;
 
 import org.opencv.android.CameraActivity;
@@ -75,13 +76,13 @@ public class CameraOpenCVActivity extends CameraActivity {
 
     private void initOpenCV(){
         if(OpenCVLoader.initLocal()){
-            if(MainActivity.S_DEBUG_MODE) {
+            if(Constants.S_DEBUG_MODE) {
                 Toast.makeText(this, "Application is starting...", Toast.LENGTH_SHORT).show();
             }
 
             cameraBridgeViewBase.enableView();
         }else{
-            if(MainActivity.S_DEBUG_MODE) {
+            if(Constants.S_DEBUG_MODE) {
                 Toast.makeText(this, "Application failed to start!", Toast.LENGTH_SHORT).show();
             }
         }

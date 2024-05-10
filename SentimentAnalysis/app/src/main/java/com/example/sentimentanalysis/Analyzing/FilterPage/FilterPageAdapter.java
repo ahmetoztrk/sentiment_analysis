@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class FilterPageAdapter extends PagerAdapter {
 
-    public static final int S_ADAPTER_SIZE = 5;
-
     ArrayList<FilterPageModel> modelArrayList;
 
     Context context;

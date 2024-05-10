@@ -12,9 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageAdapter;
 import com.example.sentimentanalysis.BuildConfig;
-import com.example.sentimentanalysis.ImageProcessing.MainActivity;
+import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.Analyzing.LoadingDialog;
 import com.example.sentimentanalysis.R;
 import com.example.sentimentanalysis.FileOperations;
@@ -64,10 +63,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionPageViewPager = findViewById(R.id.suggestion_page_vp);
 
-        title = new String[FilterPageAdapter.S_ADAPTER_SIZE];
-        description = new String[FilterPageAdapter.S_ADAPTER_SIZE];
+        title = new String[Constants.S_ADAPTER_SIZE];
+        description = new String[Constants.S_ADAPTER_SIZE];
 
-        for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
+        for(int i=0; i<Constants.S_ADAPTER_SIZE; i++){
             title[i] = "Title " + i;
             description[i] = "Description " + i;
         }
@@ -99,7 +98,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
     private void loadCards(){
         suggestionPageModelArrayList = new ArrayList<>();
 
-        for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
+        for(int i=0; i<Constants.S_ADAPTER_SIZE; i++){
             suggestionPageModelArrayList.add(new SuggestionPageModel(
                     title[i],
                     description[i],
@@ -187,10 +186,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random music names.");
+        if(Constants.S_EMOTION.equals("No Emotion")){
+            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random music names.");
         }else{
-            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " music names.");
+            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " music names.");
         }
     }
 
@@ -201,10 +200,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random series names.");
+        if(Constants.S_EMOTION.equals("No Emotion")){
+            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random series names.");
         }else{
-            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " series names.");
+            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " series names.");
         }
     }
 
@@ -215,10 +214,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random movie names.");
+        if(Constants.S_EMOTION.equals("No Emotion")){
+            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random movie names.");
         }else{
-            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " movie names.");
+            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " movie names.");
         }
     }
 
@@ -229,10 +228,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random book names.");
+        if(Constants.S_EMOTION.equals("No Emotion")){
+            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random book names.");
         }else{
-            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " book names.");
+            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " book names.");
         }
     }
 
@@ -243,10 +242,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(MainActivity.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + FilterPageAdapter.S_ADAPTER_SIZE + " random activity names.");
+        if(Constants.S_EMOTION.equals("No Emotion")){
+            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random activity names.");
         }else{
-            GeminiAPIGetTitle("Give me " + FilterPageAdapter.S_ADAPTER_SIZE + " random " + MainActivity.S_EMOTION + " activity names.");
+            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " activity names.");
         }
     }
 
@@ -270,7 +269,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     title = resultText.split("\n");
                 }
 
-                for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
+                for(int i=0; i<Constants.S_ADAPTER_SIZE; i++){
                     suggestionPageModelArrayList.get(i).setTitle(title[i]);
 
                     title[i] = title[i].substring(3);
@@ -320,10 +319,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
+        for(int i=0; i<Constants.S_ADAPTER_SIZE; i++){
             if(like[i]){
                 FileOperations.addFile(getApplicationContext(), activityText + ".txt", title[i] + "\n");
-                FileOperations.addFile(getApplicationContext(), activityText + ".txt", MainActivity.S_EMOTION + "\n");
+                FileOperations.addFile(getApplicationContext(), activityText + ".txt", Constants.S_EMOTION + "\n");
 
                 String dateTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                 FileOperations.addFile(getApplicationContext(), activityText + ".txt", dateTime + "\n");
