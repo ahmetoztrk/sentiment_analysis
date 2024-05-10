@@ -5,6 +5,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.sentimentanalysis.R;
 
@@ -51,7 +52,9 @@ public class FacialExpressionRecognition {
 
         interpreter = new Interpreter(loadModelFile(assetManager,modelPath),options);
 
-        Log.d("facial_Expression","Model is loaded");
+        if(MainActivity.S_DEBUG_MODE) {
+            Toast.makeText(context, "Facial Expression Model is loaded.", Toast.LENGTH_SHORT).show();
+        }
 
         try {
             InputStream is = context.getResources().openRawResource(R.raw.haarcascade_frontalface_alt);
@@ -74,7 +77,9 @@ public class FacialExpressionRecognition {
 
             cascadeClassifier = new CascadeClassifier(mCascadeFile.getAbsolutePath());
 
-            Log.d("facial_Expression","Classifier is loaded");
+            if(MainActivity.S_DEBUG_MODE) {
+                Toast.makeText(context, "Facial Expression Classifier is loaded.", Toast.LENGTH_SHORT).show();
+            }
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -128,7 +133,6 @@ public class FacialExpressionRecognition {
             interpreter.run(byteBuffer,emotion);
 
             float emotion_v=(float)Array.get(Array.get(emotion,0),0);
-            Log.d("facial_expression","Output: "+ emotion_v);
 
             MainActivity.S_EMOTION = get_emotion_text(emotion_v);
 

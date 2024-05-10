@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageAdapter;
 import com.example.sentimentanalysis.Analyzing.DescriptionDialog;
+import com.example.sentimentanalysis.ImageProcessing.MainActivity;
 import com.example.sentimentanalysis.R;
 
 import java.util.ArrayList;
@@ -66,7 +68,9 @@ public class SuggestionPageAdapter extends PagerAdapter {
             public void onClick(View v) {
                 for(int i = 0; i< FilterPageAdapter.S_ADAPTER_SIZE; i++) {
                     if (position == i) {
-                        // Toast.makeText(context, "Position " + i, Toast.LENGTH_SHORT).show();
+                        if(MainActivity.S_DEBUG_MODE) {
+                            Toast.makeText(context, "Position " + i, Toast.LENGTH_SHORT).show();
+                        }
 
                         descriptionLoadingDialog.StartLoadingDialog(title, description);
                     }

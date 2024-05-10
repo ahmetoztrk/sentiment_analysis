@@ -30,6 +30,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static boolean S_DEBUG_MODE = false;
     public static String S_EMOTION = "No Emotion";
 
     FacialExpressionRecognition facialExpressionRecognition;
@@ -86,11 +87,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void initOpenCV(){
         if(OpenCVLoader.initLocal()){
-            Toast.makeText(this, "Application is starting...", Toast.LENGTH_SHORT).show();
+            if(S_DEBUG_MODE){
+                Toast.makeText(this, "Application is starting...", Toast.LENGTH_SHORT).show();
+            }
 
             mat = new Mat();
         }else{
-            Toast.makeText(this, "Application failed to start!", Toast.LENGTH_SHORT).show();
+            if(S_DEBUG_MODE){
+                Toast.makeText(this, "Application failed to start!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

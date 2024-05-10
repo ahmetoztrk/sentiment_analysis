@@ -1,7 +1,5 @@
 package com.example.sentimentanalysis;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;

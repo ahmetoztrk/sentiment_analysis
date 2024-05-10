@@ -75,11 +75,15 @@ public class CameraOpenCVActivity extends CameraActivity {
 
     private void initOpenCV(){
         if(OpenCVLoader.initLocal()){
-            Toast.makeText(this, "Application is starting...", Toast.LENGTH_SHORT).show();
+            if(MainActivity.S_DEBUG_MODE) {
+                Toast.makeText(this, "Application is starting...", Toast.LENGTH_SHORT).show();
+            }
 
             cameraBridgeViewBase.enableView();
         }else{
-            Toast.makeText(this, "Application failed to start!", Toast.LENGTH_SHORT).show();
+            if(MainActivity.S_DEBUG_MODE) {
+                Toast.makeText(this, "Application failed to start!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
