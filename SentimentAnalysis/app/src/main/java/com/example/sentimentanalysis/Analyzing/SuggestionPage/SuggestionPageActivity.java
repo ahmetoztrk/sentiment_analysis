@@ -2,6 +2,7 @@ package com.example.sentimentanalysis.Analyzing.SuggestionPage;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -16,6 +17,7 @@ import com.example.sentimentanalysis.BuildConfig;
 import com.example.sentimentanalysis.ImageProcessing.MainActivity;
 import com.example.sentimentanalysis.Analyzing.LoadingDialog;
 import com.example.sentimentanalysis.R;
+import com.example.sentimentanalysis.FileOperations;
 import com.google.ai.client.generativeai.GenerativeModel;
 import com.google.ai.client.generativeai.java.GenerativeModelFutures;
 import com.google.ai.client.generativeai.type.Content;
@@ -25,6 +27,8 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.Executor;
 
 public class SuggestionPageActivity extends AppCompatActivity {
@@ -38,7 +42,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
     String[] title, description;
     ImageButton likeButton1, likeButton2, likeButton3, likeButton4, likeButton5;
 
-    boolean like1, like2, like3, like4, like5;
+    String activityText;
+    boolean[] like;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
         likeButton3 = findViewById(R.id.like_3_image_button);
         likeButton4 = findViewById(R.id.like_4_image_button);
         likeButton5 = findViewById(R.id.like_5_image_button);
+
+        like = new boolean[5];
 
         Intent intent = getIntent();
         int position = intent.getIntExtra("position",0);
@@ -110,9 +117,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         likeButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                like1 = !like1;
+                like[0] = !like[0];
 
-                if(like1){
+                if(like[0]){
                     likeButton1.setBackgroundResource(R.drawable.icon_full_heart);
                 }else{
                     likeButton1.setBackgroundResource(R.drawable.icon_empty_heart);
@@ -123,9 +130,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         likeButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                like2 = !like2;
+                like[1] = !like[1];
 
-                if(like2){
+                if(like[1]){
                     likeButton2.setBackgroundResource(R.drawable.icon_full_heart);
                 }else{
                     likeButton2.setBackgroundResource(R.drawable.icon_empty_heart);
@@ -136,9 +143,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         likeButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                like3 = !like3;
+                like[2] = !like[2];
 
-                if(like3){
+                if(like[2]){
                     likeButton3.setBackgroundResource(R.drawable.icon_full_heart);
                 }else{
                     likeButton3.setBackgroundResource(R.drawable.icon_empty_heart);
@@ -149,9 +156,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         likeButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                like4 = !like4;
+                like[3] = !like[3];
 
-                if(like4){
+                if(like[3]){
                     likeButton4.setBackgroundResource(R.drawable.icon_full_heart);
                 }else{
                     likeButton4.setBackgroundResource(R.drawable.icon_empty_heart);
@@ -162,9 +169,9 @@ public class SuggestionPageActivity extends AppCompatActivity {
         likeButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                like5 = !like5;
+                like[4] = !like[4];
 
-                if(like5){
+                if(like[4]){
                     likeButton5.setBackgroundResource(R.drawable.icon_full_heart);
                 }else{
                     likeButton5.setBackgroundResource(R.drawable.icon_empty_heart);
@@ -175,7 +182,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetMusics(){
-        titleTextView.setText("Musics");
+        activityText = "Musics";
+        titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
 
@@ -188,7 +196,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetSeries(){
-        titleTextView.setText("Series");
+        activityText = "Series";
+        titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
 
@@ -201,7 +210,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetMovies(){
-        titleTextView.setText("Movies");
+        activityText = "Movies";
+        titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
 
@@ -214,7 +224,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetBooks(){
-        titleTextView.setText("Books");
+        activityText = "Books";
+        titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
 
@@ -227,7 +238,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetActivities(){
-        titleTextView.setText("Activities");
+        activityText = "Activities";
+        titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
 
@@ -261,7 +273,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                 for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
                     suggestionPageModelArrayList.get(i).setTitle(title[i]);
 
-                    title[i] = title[i].substring(2);
+                    title[i] = title[i].substring(3);
 
                     GeminiAPIGetDescription("Give a brief description of " + title[i] + ".", i);
                 }
@@ -302,5 +314,23 @@ public class SuggestionPageActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         }, executor);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        for(int i=0; i<FilterPageAdapter.S_ADAPTER_SIZE; i++){
+            if(like[i]){
+                FileOperations.addFile(getApplicationContext(), activityText + ".txt", title[i] + "\n");
+                FileOperations.addFile(getApplicationContext(), activityText + ".txt", MainActivity.S_EMOTION + "\n");
+
+                String dateTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                FileOperations.addFile(getApplicationContext(), activityText + ".txt", dateTime + "\n");
+
+                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+                FileOperations.addFile(getApplicationContext(), activityText + ".txt", currentTime + "\n\n");
+            }
+        }
     }
 }

@@ -1,17 +1,18 @@
 package com.example.sentimentanalysis.Analyzing.SuggestionPage;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageAdapter;
+import com.example.sentimentanalysis.Analyzing.DescriptionDialog;
 import com.example.sentimentanalysis.R;
 
 import java.util.ArrayList;
@@ -22,9 +23,13 @@ public class SuggestionPageAdapter extends PagerAdapter {
 
     Context context;
 
+    DescriptionDialog descriptionLoadingDialog;
+
     public SuggestionPageAdapter(Context context, ArrayList<SuggestionPageModel> modelArrayList) {
         this.context = context;
         this.modelArrayList = modelArrayList;
+
+        descriptionLoadingDialog = new DescriptionDialog((Activity) context);
     }
 
     @Override
@@ -61,7 +66,9 @@ public class SuggestionPageAdapter extends PagerAdapter {
             public void onClick(View v) {
                 for(int i = 0; i< FilterPageAdapter.S_ADAPTER_SIZE; i++) {
                     if (position == i) {
-                        Toast.makeText(context, "Position " + i, Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(context, "Position " + i, Toast.LENGTH_SHORT).show();
+
+                        descriptionLoadingDialog.StartLoadingDialog(title, description);
                     }
                 }
             }
