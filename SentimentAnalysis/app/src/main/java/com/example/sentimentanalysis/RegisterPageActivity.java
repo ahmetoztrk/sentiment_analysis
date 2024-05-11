@@ -87,7 +87,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                     Matcher matcher;
                     String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
                     pattern = Pattern.compile(EMAIL_PATTERN);
-                    CharSequence cs = (CharSequence) eMailAddressEditText.getText().toString();
+                    CharSequence cs = eMailAddressEditText.getText().toString();
                     matcher = pattern.matcher(cs);
 
                     if(!matcher.matches()){

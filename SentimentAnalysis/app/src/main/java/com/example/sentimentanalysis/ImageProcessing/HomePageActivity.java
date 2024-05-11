@@ -29,7 +29,7 @@ import com.example.sentimentanalysis.StatisticsPageActivity;
 import java.io.IOException;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity {
 
     FacialExpressionRecognition facialExpressionRecognition;
 
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         statBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, StatisticsPageActivity.class);
+                Intent intent = new Intent(HomePageActivity.this, StatisticsPageActivity.class);
                 startActivity(intent);
             }
         });
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         guiTestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, FilterPageActivity.class);
+                Intent intent = new Intent(HomePageActivity.this, FilterPageActivity.class);
                 startActivity(intent);
             }
         });
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             int inputSize = 48;
 
-            facialExpressionRecognition = new FacialExpressionRecognition(getAssets(), MainActivity.this, "model.tflite", inputSize);
+            facialExpressionRecognition = new FacialExpressionRecognition(getAssets(), HomePageActivity.this, "model.tflite", inputSize);
         } catch (IOException e) {
             e.printStackTrace();
         }

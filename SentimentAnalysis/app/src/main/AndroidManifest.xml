@@ -40,7 +40,7 @@
         android:theme="@style/Theme.SentimentAnalysis"
         tools:targetApi="31">
         <activity
-            android:name=".ImageProcessing.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,7 +61,7 @@
             android:name=".StatisticsPageActivity">
         </activity>
         <activity
-            android:name=".LoginPageActivity">
+            android:name=".ImageProcessing.HomePageActivity">
         </activity>
         <activity
             android:name=".RegisterPageActivity">

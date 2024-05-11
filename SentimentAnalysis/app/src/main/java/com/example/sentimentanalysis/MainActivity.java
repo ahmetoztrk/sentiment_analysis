@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sentimentanalysis.ImageProcessing.MainActivity;
+import com.example.sentimentanalysis.ImageProcessing.HomePageActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginPageActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     EditText eMailAddressEditText, passwordEditText;
     TextView eMailAddressInfoTextView, passwordInfoTextView;
@@ -24,7 +24,7 @@ public class LoginPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.activity_home_page);
 
         init();
 
@@ -53,7 +53,7 @@ public class LoginPageActivity extends AppCompatActivity {
                     Matcher matcher;
                     String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
                     pattern = Pattern.compile(EMAIL_PATTERN);
-                    CharSequence cs = (CharSequence) eMailAddressEditText.getText().toString();
+                    CharSequence cs = eMailAddressEditText.getText().toString();
                     matcher = pattern.matcher(cs);
 
                     if(!matcher.matches()){
@@ -71,7 +71,7 @@ public class LoginPageActivity extends AppCompatActivity {
 
                 if(!eMailAddressEditText.getText().toString().isEmpty() && !passwordEditText.getText().toString().isEmpty()){
                     if(false){
-                        Intent init = new Intent(LoginPageActivity.this, MainActivity.class);
+                        Intent init = new Intent(MainActivity.this, HomePageActivity.class);
                         startActivity(init);
                     }else{
                         eMailAddressInfoTextView.setText("Wrong entry!");
@@ -84,7 +84,7 @@ public class LoginPageActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPageActivity.this, RegisterPageActivity.class);
+                Intent intent = new Intent(MainActivity.this, RegisterPageActivity.class);
                 startActivity(intent);
             }
         });
@@ -92,7 +92,7 @@ public class LoginPageActivity extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPageActivity.this, MainActivity.class);
+                Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
                 startActivity(intent);
             }
         });
