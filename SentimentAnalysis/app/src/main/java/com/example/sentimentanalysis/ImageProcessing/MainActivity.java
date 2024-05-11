@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageActivity;
 import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.R;
-import com.example.sentimentanalysis.StatisticsActivity;
+import com.example.sentimentanalysis.StatisticsPageActivity;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         statBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, StatisticsActivity.class);
+                Intent intent = new Intent(MainActivity.this, StatisticsPageActivity.class);
                 startActivity(intent);
             }
         });
