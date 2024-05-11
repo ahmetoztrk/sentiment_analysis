@@ -58,7 +58,13 @@
             android:name=".Analyzing.SuggestionPage.SuggestionPageActivity">
         </activity>
         <activity
-            android:name=".StatisticsActivity">
+            android:name=".StatisticsPageActivity">
+        </activity>
+        <activity
+            android:name=".LoginPageActivity">
+        </activity>
+        <activity
+            android:name=".RegisterPageActivity">
         </activity>
     </application>
 </manifest>
