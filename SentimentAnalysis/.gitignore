@@ -14,3 +14,4 @@
 .cxx
 local.properties
 /sdk/build/
+/app/google-services.json

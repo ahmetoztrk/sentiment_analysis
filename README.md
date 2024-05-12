@@ -16,6 +16,12 @@
 
 * Gemini API (Surum: 0.5.0)
 
+* Google Services (Surum: 4.4.1)
+
+* Firebase Auth (Surum: 23.0.0)
+
+* Firebase Firestore (Surum: 25.0.0)
+
 #
 
 :fleur_de_lis: Projeyi Indirme :fleur_de_lis:
@@ -57,3 +63,11 @@
 * Minimum: <code>'API 24' ("Nougat"; Android 7.0)</code>
 
 * Maximum: <code>'API 34' ("UpsideDownCake"; Android 14.0)</code>
+
+#
+
+:maple_leaf: API Kullanimlari :maple_leaf:
+
+* <code>Gemini API</code> kullanabilmek icin oncelikle bir Gemini hesabi olusturarak API anahtari alin. Aldiginiz anahtari <code>C:\AndroidStudioProjects\sentiment_analysis\SentimentAnalysis\app\src\main\java\com\example\sentimentanalysis</code> dizininde olan <code>BuildConfig.java</code> sinifindaki <code>static String apikey</code> degiskenine atayin. <code>public static String apikey = "API anahtariniz";</code>
+
+* <code>Firebase API</code> kullanabilmek icin oncelikle bir Firebase hesabi olusturarak projeye uygun bir bulut hesabi acin. Hesap acma adimlarini takip ederken <code>google-services.json</code> dosyasini indirin. Indirdiginiz dosyayi <code>C:\AndroidStudioProjects\sentiment_analysis\SentimentAnalysis\app</code> dizinine atin.
