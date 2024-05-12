@@ -1,6 +1,7 @@
 package com.example.sentimentanalysis;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,14 +9,24 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.sentimentanalysis.ImageProcessing.HomePageActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterPageActivity extends AppCompatActivity {
+
+    FirebaseAuth auth;
 
     ImageView profileImageView;
     EditText usernameEditText, eMailAddressEditText, passwordEditText, rePasswordEditText;
@@ -33,6 +44,8 @@ public class RegisterPageActivity extends AppCompatActivity {
     }
 
     private void init(){
+        auth = FirebaseAuth.getInstance();
+
         profileImageView = findViewById(R.id.profile_image_view);
 
         usernameEditText = findViewById(R.id.username_edit_text);
@@ -117,6 +130,23 @@ public class RegisterPageActivity extends AppCompatActivity {
                     }else{
                         rePasswordInfoTextView.setText("");
                     }
+                }
+
+                if(usernameInfoTextView.getText().toString().isEmpty() && eMailAddressInfoTextView.getText().toString().isEmpty() && ageInfoTextView.getText().toString().isEmpty() && passwordInfoTextView.getText().toString().isEmpty() && rePasswordInfoTextView.getText().toString().isEmpty()){
+                    auth.createUserWithEmailAndPassword(eMailAddressEditText.getText().toString(), passwordEditText.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Toast.makeText(RegisterPageActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(RegisterPageActivity.this, HomePageActivity.class);
+                            startActivity(intent);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RegisterPageActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });

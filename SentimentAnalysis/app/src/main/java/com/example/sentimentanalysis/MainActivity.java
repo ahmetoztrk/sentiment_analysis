@@ -6,25 +6,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sentimentanalysis.ImageProcessing.HomePageActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
+    FirebaseAuth auth;
+    FirebaseUser user;
+
     EditText eMailAddressEditText, passwordEditText;
     TextView eMailAddressInfoTextView, passwordInfoTextView;
-
     Button loginBtn, registerBtn, continueBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_main);
 
         init();
 
@@ -32,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
         eMailAddressEditText = findViewById(R.id.e_mail_address_edit_text);
         eMailAddressInfoTextView = findViewById(R.id.e_mail_address_info_text_view);
         passwordEditText = findViewById(R.id.password_edit_text);
@@ -40,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_btn);
         registerBtn = findViewById(R.id.register_btn);
         continueBtn = findViewById(R.id.continue_btn);
+
+        if(user != null){
+            eMailAddressEditText.setText(user.getEmail());
+        }
     }
 
     private void setButtonsListener(){
@@ -70,13 +86,23 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(!eMailAddressEditText.getText().toString().isEmpty() && !passwordEditText.getText().toString().isEmpty()){
-                    if(false){
-                        Intent init = new Intent(MainActivity.this, HomePageActivity.class);
-                        startActivity(init);
-                    }else{
-                        eMailAddressInfoTextView.setText("Wrong entry!");
-                        passwordInfoTextView.setText("Wrong entry!");
-                    }
+                    auth.signInWithEmailAndPassword(eMailAddressEditText.getText().toString(), passwordEditText.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+
+                            Intent init = new Intent(MainActivity.this, HomePageActivity.class);
+                            startActivity(init);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                            eMailAddressInfoTextView.setText("Wrong entry!");
+                            passwordInfoTextView.setText("Wrong entry!");
+                        }
+                    });
                 }
             }
         });

@@ -23,18 +23,22 @@ import android.widget.Toast;
 
 import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageActivity;
 import com.example.sentimentanalysis.Constants;
+import com.example.sentimentanalysis.MainActivity;
 import com.example.sentimentanalysis.R;
 import com.example.sentimentanalysis.StatisticsPageActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class HomePageActivity extends AppCompatActivity {
 
+    FirebaseAuth auth;
+
     FacialExpressionRecognition facialExpressionRecognition;
 
     ImageView emotionPhotoImageView;
-    Button camBtn, statBtn, guiTestBtn;
+    Button camBtn, statBtn, guiTestBtn, exitBtn;
     TextView currentMoodTextView;
 
     Mat mat = null;
@@ -43,7 +47,7 @@ public class HomePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
 
         getPermission();
 
@@ -98,10 +102,13 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void init(){
+        auth = FirebaseAuth.getInstance();
+
         emotionPhotoImageView = findViewById(R.id.emotion_photoimage_view);
         camBtn = findViewById(R.id.camera_btn);
         statBtn = findViewById(R.id.statistics_btn);
         guiTestBtn = findViewById(R.id.gui_test_btn);
+        exitBtn = findViewById(R.id.exit_btn);
         currentMoodTextView = findViewById(R.id.current_mood_tv);
 
         currentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
@@ -132,6 +139,18 @@ public class HomePageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomePageActivity.this, FilterPageActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+
+                Intent intent = new Intent(HomePageActivity.this, MainActivity.class);
+                startActivity(intent);
+
+                finish();
             }
         });
     }

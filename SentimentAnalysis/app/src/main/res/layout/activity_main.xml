@@ -1,74 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFFFF"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <ImageView
-        android:id="@+id/emotion_photoimage_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="500dp" />
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/icon_profile">
+    </ImageView>
 
-    <Button
-        android:id="@+id/camera_btn"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="E-mail Address"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/e_mail_address_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/e_mail_address_edit_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Camera"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="400dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginEnd="125dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="15dp"
+        android:hint="example@email.com"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:background="@drawable/custom_edge"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/icon_email_address_custom"
+        android:inputType="textEmailAddress">
+    </EditText>
 
-    <Button
-        android:id="@+id/statistics_btn"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="Password"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/password_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/password_edit_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Statistics"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="325dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginEnd="125dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="15dp"
+        android:hint="123456789"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:background="@drawable/custom_edge"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/icon_lock_custom"
+        android:inputType="textPassword">
+    </EditText>
 
     <Button
-        android:id="@+id/gui_test_btn"
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="GUI Test"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="250dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginEnd="125dp" />
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="125dp"
+        android:text="Login">
+    </Button>
 
-    <TextView
+    <Button
+        android:id="@+id/register_btn"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="150dp"
-        android:text="Current Mood"
-        android:textStyle="italic"
-        android:textSize="50sp"
-        android:gravity="center"
-        android:textColor="@color/black">
-    </TextView>
+        android:layout_height="50dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="125dp"
+        android:text="Register">
+    </Button>
 
-    <TextView
-        android:id="@+id/current_mood_tv"
+    <Button
+        android:id="@+id/continue_btn"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="75dp"
-        android:text="'Neutral'"
-        android:textStyle="italic"
-        android:textSize="50sp"
-        android:gravity="center"
-        android:textColor="@color/black" >
-    </TextView>
-</RelativeLayout>
+        android:layout_height="50dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="125dp"
+        android:text="Continue">
+    </Button>
+</LinearLayout>
