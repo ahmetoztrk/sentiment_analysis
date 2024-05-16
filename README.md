@@ -20,7 +20,7 @@
 
 * Firebase Auth (Surum: 23.0.0)
 
-* Firebase Firestore (Surum: 25.0.0)
+* Firebase Database (Surum: 21.0.0)
 
 #
 
