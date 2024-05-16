@@ -12,6 +12,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -36,6 +37,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -52,6 +56,8 @@ public class HomePageActivity extends AppCompatActivity {
 
     Mat mat = null;
     Bitmap bitmap;
+
+    int age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,6 +220,36 @@ public class HomePageActivity extends AppCompatActivity {
                 for(DataSnapshot snp : snapshot.getChildren()){
                     if(Objects.equals(snp.getKey(), "username")){
                         welcomeTextView.setText(snp.getValue().toString() + "!");
+                    }else if(Objects.equals(snp.getKey(), "age")){
+                        String current = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                        String[] currentArr = new String[3];
+
+                        if(current != null){
+                            currentArr = current.split("/");
+                        }
+
+                        String birth = snp.getValue().toString();
+                        String[] birthArr = new String[3];
+
+                        if(birth != null){
+                            birthArr = birth.split("/");
+                        }
+
+                        if (currentArr.length == 3 && birthArr.length == 3) {
+                            int currentDay = Integer.parseInt(currentArr[0]);
+                            int currentMonth = Integer.parseInt(currentArr[1]);
+                            int currentYear = Integer.parseInt(currentArr[2]);
+
+                            int birthDay = Integer.parseInt(birthArr[0]);
+                            int birthMonth = Integer.parseInt(birthArr[1]);
+                            int birthYear = Integer.parseInt(birthArr[2]);
+
+                            age = currentYear - birthYear;
+
+                            if (birthMonth > currentMonth || (birthMonth == currentMonth && birthDay > currentDay)) {
+                                age--;
+                            }
+                        }
                     }
                 }
             }

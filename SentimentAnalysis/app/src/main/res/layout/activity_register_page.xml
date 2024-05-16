@@ -245,6 +245,64 @@
         android:inputType="textPassword">
     </EditText>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="Gender"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/gender_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <RadioButton
+            android:id="@+id/male_radio_btn"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="Male"
+            android:drawableStart="@drawable/icon_male"
+            android:textColor="#ACACAC"
+            android:textSize="17dp">
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/female_radio_btn"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:text="Female"
+            android:drawableStart="@drawable/icon_female"
+            android:textColor="#ACACAC"
+            android:textSize="17dp">
+        </RadioButton>
+    </LinearLayout>
+
     <Button
         android:id="@+id/register_btn"
         android:layout_width="match_parent"

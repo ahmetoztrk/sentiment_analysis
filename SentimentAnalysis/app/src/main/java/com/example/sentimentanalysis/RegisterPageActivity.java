@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,8 @@ public class RegisterPageActivity extends AppCompatActivity {
 
     ImageView profileImageView;
     EditText usernameEditText, eMailAddressEditText, passwordEditText, rePasswordEditText;
-    TextView ageTextView, usernameInfoTextView, eMailAddressInfoTextView, ageInfoTextView, passwordInfoTextView, rePasswordInfoTextView;
+    TextView ageTextView, usernameInfoTextView, eMailAddressInfoTextView, ageInfoTextView, passwordInfoTextView, rePasswordInfoTextView, genderInfoTextView;
+    RadioButton maleRadioBtn, femaleRadioBtn;
     Button registerBtn;
 
     @Override
@@ -65,6 +67,9 @@ public class RegisterPageActivity extends AppCompatActivity {
         passwordInfoTextView = findViewById(R.id.password_info_text_view);
         rePasswordEditText = findViewById(R.id.re_password_edit_text);
         rePasswordInfoTextView = findViewById(R.id.re_password_info_text_view);
+        maleRadioBtn = findViewById(R.id.male_radio_btn);
+        femaleRadioBtn = findViewById(R.id.female_radio_btn);
+        genderInfoTextView  = findViewById(R.id.gender_info_text_view);
 
         registerBtn = findViewById(R.id.register_btn);
     }
@@ -94,6 +99,24 @@ public class RegisterPageActivity extends AppCompatActivity {
                 }, year, month, day);
 
                 dialog.show();
+            }
+        });
+
+        maleRadioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(femaleRadioBtn.isChecked()){
+                    femaleRadioBtn.setChecked(false);
+                }
+            }
+        });
+
+        femaleRadioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(maleRadioBtn.isChecked()){
+                    maleRadioBtn.setChecked(false);
+                }
             }
         });
 
@@ -150,7 +173,13 @@ public class RegisterPageActivity extends AppCompatActivity {
                     }
                 }
 
-                if(usernameInfoTextView.getText().toString().isEmpty() && eMailAddressInfoTextView.getText().toString().isEmpty() && ageInfoTextView.getText().toString().isEmpty() && passwordInfoTextView.getText().toString().isEmpty() && rePasswordInfoTextView.getText().toString().isEmpty()){
+                if(!maleRadioBtn.isChecked() && !femaleRadioBtn.isChecked()){
+                    genderInfoTextView.setText("Empty!");
+                }else{
+                    genderInfoTextView.setText("");
+                }
+
+                if(usernameInfoTextView.getText().toString().isEmpty() && eMailAddressInfoTextView.getText().toString().isEmpty() && ageInfoTextView.getText().toString().isEmpty() && passwordInfoTextView.getText().toString().isEmpty() && rePasswordInfoTextView.getText().toString().isEmpty() && genderInfoTextView.getText().toString().isEmpty()){
                     auth.createUserWithEmailAndPassword(eMailAddressEditText.getText().toString(), passwordEditText.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
@@ -163,6 +192,15 @@ public class RegisterPageActivity extends AppCompatActivity {
                             data.put("eMailAddress", eMailAddressEditText.getText().toString());
                             data.put("age", ageTextView.getText().toString());
                             data.put("password", passwordEditText.getText().toString());
+
+                            if(maleRadioBtn.isChecked()){
+                                data.put("gender", "male");
+                            }else if(femaleRadioBtn.isChecked()){
+                                data.put("gender", "female");
+                            }else{
+                                data.put("gender", "other");
+                            }
+
                             data.put("uid", user.getUid());
 
                             reference.child("users").child(user.getUid()).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {

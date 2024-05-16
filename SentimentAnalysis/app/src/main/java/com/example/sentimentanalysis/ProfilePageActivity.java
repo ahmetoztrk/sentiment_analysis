@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,8 @@ public class ProfilePageActivity extends AppCompatActivity {
 
     ImageView profileImageView;
     EditText usernameEditText, eMailAddressEditText, passwordEditText, rePasswordEditText;
-    TextView ageTextView, usernameInfoTextView, eMailAddressInfoTextView, ageInfoTextView, passwordInfoTextView, rePasswordInfoTextView;
+    TextView ageTextView, usernameInfoTextView, eMailAddressInfoTextView, ageInfoTextView, passwordInfoTextView, rePasswordInfoTextView, genderInfoTextView;
+    RadioButton maleRadioBtn, femaleRadioBtn;
     Button deleteBtn, updateBtn;
 
     @Override
@@ -69,6 +71,9 @@ public class ProfilePageActivity extends AppCompatActivity {
         passwordInfoTextView = findViewById(R.id.password_info_text_view);
         rePasswordEditText = findViewById(R.id.re_password_edit_text);
         rePasswordInfoTextView = findViewById(R.id.re_password_info_text_view);
+        maleRadioBtn = findViewById(R.id.male_radio_btn);
+        femaleRadioBtn = findViewById(R.id.female_radio_btn);
+        genderInfoTextView  = findViewById(R.id.gender_info_text_view);
 
         deleteBtn = findViewById(R.id.delete_btn);
         updateBtn = findViewById(R.id.update_btn);
@@ -101,6 +106,24 @@ public class ProfilePageActivity extends AppCompatActivity {
                 }, year, month, day);
 
                 dialog.show();
+            }
+        });
+
+        maleRadioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(femaleRadioBtn.isChecked()){
+                    femaleRadioBtn.setChecked(false);
+                }
+            }
+        });
+
+        femaleRadioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(maleRadioBtn.isChecked()){
+                    maleRadioBtn.setChecked(false);
+                }
             }
         });
 
@@ -195,12 +218,26 @@ public class ProfilePageActivity extends AppCompatActivity {
                                     }
                                 }
 
-                                if(usernameInfoTextView.getText().toString().isEmpty() && eMailAddressInfoTextView.getText().toString().isEmpty() && ageInfoTextView.getText().toString().isEmpty() && passwordInfoTextView.getText().toString().isEmpty() && rePasswordInfoTextView.getText().toString().isEmpty()) {
+                                if(!maleRadioBtn.isChecked() && !femaleRadioBtn.isChecked()){
+                                    genderInfoTextView.setText("Empty!");
+                                }else{
+                                    genderInfoTextView.setText("");
+                                }
+
+                                if(usernameInfoTextView.getText().toString().isEmpty() && eMailAddressInfoTextView.getText().toString().isEmpty() && ageInfoTextView.getText().toString().isEmpty() && passwordInfoTextView.getText().toString().isEmpty() && rePasswordInfoTextView.getText().toString().isEmpty() && genderInfoTextView.getText().toString().isEmpty()) {
                                     data = new HashMap<>();
                                     data.put("username", usernameEditText.getText().toString());
                                     data.put("eMailAddress", eMailAddressEditText.getText().toString());
                                     data.put("age", ageTextView.getText().toString());
                                     data.put("password", passwordEditText.getText().toString());
+
+                                    if(maleRadioBtn.isChecked()){
+                                        data.put("gender", "male");
+                                    }else if(femaleRadioBtn.isChecked()){
+                                        data.put("gender", "female");
+                                    }else{
+                                        data.put("gender", "other");
+                                    }
 
                                     FirebaseAPIUpdateData(user.getUid(), data);
                                 }
@@ -233,6 +270,17 @@ public class ProfilePageActivity extends AppCompatActivity {
                     }else if(Objects.equals(snp.getKey(), "password")){
                         passwordEditText.setText(snp.getValue().toString());
                         rePasswordEditText.setText(snp.getValue().toString());
+                    }else if(Objects.equals(snp.getKey(), "gender")){
+                        if(snp.getValue().toString().equals("male")){
+                            maleRadioBtn.setChecked(true);
+                            femaleRadioBtn.setChecked(false);
+                        }else if(snp.getValue().toString().equals("female")){
+                            maleRadioBtn.setChecked(false);
+                            femaleRadioBtn.setChecked(true);
+                        }else{
+                            maleRadioBtn.setChecked(false);
+                            femaleRadioBtn.setChecked(false);
+                        }
                     }
                 }
             }
