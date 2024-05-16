@@ -246,13 +246,22 @@
     </EditText>
 
     <Button
-        android:id="@+id/register_btn"
+        android:id="@+id/delete_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="125dp"
         android:layout_marginLeft="125dp"
-        android:text="Register">
+        android:text="Delete">
+    </Button>
+
+    <Button
+        android:id="@+id/update_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="125dp"
+        android:text="Update">
     </Button>
 
     <Button

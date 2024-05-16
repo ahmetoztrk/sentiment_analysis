@@ -19,14 +19,21 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterPageActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
+    FirebaseUser user;
+    DatabaseReference reference;
+    HashMap<String, Object> data;
 
     ImageView profileImageView;
     EditText usernameEditText, eMailAddressEditText, passwordEditText, rePasswordEditText;
@@ -40,12 +47,12 @@ public class RegisterPageActivity extends AppCompatActivity {
 
         init();
 
+        initFirebase();
+
         setButtonsListener();
     }
 
     private void init(){
-        auth = FirebaseAuth.getInstance();
-
         profileImageView = findViewById(R.id.profile_image_view);
 
         usernameEditText = findViewById(R.id.username_edit_text);
@@ -60,6 +67,12 @@ public class RegisterPageActivity extends AppCompatActivity {
         rePasswordInfoTextView = findViewById(R.id.re_password_info_text_view);
 
         registerBtn = findViewById(R.id.register_btn);
+    }
+
+    private void initFirebase(){
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference();
     }
 
     private void setButtonsListener(){
@@ -128,7 +141,12 @@ public class RegisterPageActivity extends AppCompatActivity {
                     if(!passwordEditText.getText().toString().equals(rePasswordEditText.getText().toString())){
                         rePasswordInfoTextView.setText("Not the same!");
                     }else{
-                        rePasswordInfoTextView.setText("");
+                        if(passwordEditText.getText().toString().length() < 7){
+                            passwordInfoTextView.setText("At least 7!");
+                            rePasswordInfoTextView.setText("");
+                        }else {
+                            rePasswordInfoTextView.setText("");
+                        }
                     }
                 }
 
@@ -137,6 +155,28 @@ public class RegisterPageActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             Toast.makeText(RegisterPageActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+
+                            user = auth.getCurrentUser();
+
+                            data = new HashMap<>();
+                            data.put("username", usernameEditText.getText().toString());
+                            data.put("eMailAddress", eMailAddressEditText.getText().toString());
+                            data.put("age", ageTextView.getText().toString());
+                            data.put("password", passwordEditText.getText().toString());
+                            data.put("uid", user.getUid());
+
+                            reference.child("users").child(user.getUid()).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(RegisterPageActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
 
                             Intent intent = new Intent(RegisterPageActivity.this, HomePageActivity.class);
                             startActivity(intent);

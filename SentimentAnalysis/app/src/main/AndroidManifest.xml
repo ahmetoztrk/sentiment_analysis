@@ -66,5 +66,8 @@
         <activity
             android:name=".RegisterPageActivity">
         </activity>
+        <activity
+            android:name=".ProfilePageActivity">
+        </activity>
     </application>
 </manifest>

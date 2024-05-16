@@ -2,9 +2,11 @@ package com.example.sentimentanalysis;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
     EditText eMailAddressEditText, passwordEditText;
     TextView eMailAddressInfoTextView, passwordInfoTextView;
-    Button loginBtn, registerBtn, continueBtn;
+    Button loginBtn, registerBtn;
+    ImageButton passwordOpenCloseBtn;
+    boolean passwordOpenClose;
+    int passwordEditTextInputType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
+        initFirebase();
+
         setButtonsListener();
     }
 
     private void init(){
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-
         eMailAddressEditText = findViewById(R.id.e_mail_address_edit_text);
         eMailAddressInfoTextView = findViewById(R.id.e_mail_address_info_text_view);
         passwordEditText = findViewById(R.id.password_edit_text);
@@ -51,7 +55,15 @@ public class MainActivity extends AppCompatActivity {
 
         loginBtn = findViewById(R.id.login_btn);
         registerBtn = findViewById(R.id.register_btn);
-        continueBtn = findViewById(R.id.continue_btn);
+        passwordOpenCloseBtn = findViewById(R.id.password_open_close_btn);
+
+        passwordOpenClose = false;
+        passwordEditTextInputType = passwordEditText.getInputType();
+    }
+
+    private void initFirebase(){
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
         if(user != null){
             eMailAddressEditText.setText(user.getEmail());
@@ -115,11 +127,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        continueBtn.setOnClickListener(new View.OnClickListener() {
+        passwordOpenCloseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
-                startActivity(intent);
+                if(passwordOpenClose){
+                    passwordOpenCloseBtn.setBackgroundResource(R.drawable.icon_password_close);
+                    passwordEditText.setInputType(passwordEditTextInputType);
+                    passwordOpenClose = false;
+                }else{
+                    passwordOpenCloseBtn.setBackgroundResource(R.drawable.icon_password_open);
+                    passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    passwordOpenClose = true;
+                }
             }
         });
     }

@@ -24,9 +24,16 @@ import android.widget.Toast;
 import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageActivity;
 import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.MainActivity;
+import com.example.sentimentanalysis.ProfilePageActivity;
 import com.example.sentimentanalysis.R;
 import com.example.sentimentanalysis.StatisticsPageActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -34,12 +41,14 @@ import java.util.Objects;
 public class HomePageActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
+    FirebaseUser user;
+    DatabaseReference reference;
 
     FacialExpressionRecognition facialExpressionRecognition;
 
     ImageView emotionPhotoImageView;
-    Button camBtn, statBtn, guiTestBtn, exitBtn;
-    TextView currentMoodTextView;
+    Button camBtn, statBtn, guiTestBtn, exitBtn, profileBtn;
+    TextView welcomeTextView, currentMoodTextView;
 
     Mat mat = null;
     Bitmap bitmap;
@@ -54,6 +63,8 @@ public class HomePageActivity extends AppCompatActivity {
         initOpenCV();
 
         init();
+
+        initFirebase();
 
         setButtonsListener();
     }
@@ -87,6 +98,15 @@ public class HomePageActivity extends AppCompatActivity {
         }
     }
 
+    private void initFirebase(){
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        if(user != null){
+            FirebaseAPIGetData(user.getUid());
+        }
+    }
+
     private void initOpenCV(){
         if(OpenCVLoader.initLocal()){
             if(Constants.S_DEBUG_MODE){
@@ -102,13 +122,13 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void init(){
-        auth = FirebaseAuth.getInstance();
-
+        welcomeTextView = findViewById(R.id.welcome_text_view);
         emotionPhotoImageView = findViewById(R.id.emotion_photoimage_view);
         camBtn = findViewById(R.id.camera_btn);
         statBtn = findViewById(R.id.statistics_btn);
         guiTestBtn = findViewById(R.id.gui_test_btn);
         exitBtn = findViewById(R.id.exit_btn);
+        profileBtn = findViewById(R.id.profile_btn);
         currentMoodTextView = findViewById(R.id.current_mood_tv);
 
         currentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
@@ -118,9 +138,6 @@ public class HomePageActivity extends AppCompatActivity {
         camBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent init = new Intent(MainActivity.this, CameraOpenCVActivity.class);
-                //startActivity(init);
-
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,101);
             }
@@ -153,6 +170,14 @@ public class HomePageActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, ProfilePageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -179,5 +204,24 @@ public class HomePageActivity extends AppCompatActivity {
             Utils.matToBitmap(mat,bitmap);
             emotionPhotoImageView.setImageBitmap(bitmap);
         }
+    }
+
+    private void FirebaseAPIGetData(String uid){
+        reference = FirebaseDatabase.getInstance().getReference("users").child(uid);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snp : snapshot.getChildren()){
+                    if(Objects.equals(snp.getKey(), "username")){
+                        welcomeTextView.setText(snp.getValue().toString() + "!");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HomePageActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -11,7 +11,7 @@
         android:layout_height="125dp"
         android:layout_gravity="center"
         android:layout_marginTop="200dp"
-        android:src="@drawable/icon_profile">
+        android:src="@drawable/icon_profile_1">
     </ImageView>
 
     <RelativeLayout
@@ -89,22 +89,38 @@
         </TextView>
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/password_edit_text"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:paddingLeft="15dp"
-        android:hint="123456789"
-        android:textSize="17dp"
-        android:textColor="#ACACAC"
-        android:background="@drawable/custom_edge"
-        android:drawablePadding="5dp"
-        android:drawableStart="@drawable/icon_lock_custom"
-        android:inputType="textPassword">
-    </EditText>
+        android:layout_height="50dp">
+
+        <EditText
+            android:id="@+id/password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:paddingLeft="15dp"
+            android:hint="123456789"
+            android:textSize="17dp"
+            android:textColor="#ACACAC"
+            android:background="@drawable/custom_edge"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/icon_lock_custom"
+            android:inputType="textPassword">
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/password_open_close_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_password_close"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="63dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right">
+        </ImageButton>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/login_btn"
@@ -123,14 +139,5 @@
         android:layout_marginRight="125dp"
         android:layout_marginLeft="125dp"
         android:text="Register">
-    </Button>
-
-    <Button
-        android:id="@+id/continue_btn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginRight="125dp"
-        android:layout_marginLeft="125dp"
-        android:text="Continue">
     </Button>
 </LinearLayout>
