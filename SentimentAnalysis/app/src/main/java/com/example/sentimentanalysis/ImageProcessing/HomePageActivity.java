@@ -6,21 +6,24 @@ import org.opencv.core.Mat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.icu.text.SimpleDateFormat;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.Manifest;
 
 import com.example.sentimentanalysis.Analyzing.FilterPage.FilterPageActivity;
 import com.example.sentimentanalysis.Constants;
@@ -64,8 +67,6 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        getPermission();
-
         initOpenCV();
 
         init();
@@ -75,32 +76,19 @@ public class HomePageActivity extends AppCompatActivity {
         setButtonsListener();
     }
 
-    private void getPermission() {
-        if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, 101);
-        }
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            if (checkSelfPermission(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, 123);
-            }
-        }else {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
-            }
-
-            if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
-            }
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-            getPermission();
+        if (requestCode == Constants.S_PERMISSION_REQUEST_CODE_CAMERA) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Camera permission granted!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent,Constants.S_PERMISSION_REQUEST_CODE_CAMERA);
+            } else {
+                Toast.makeText(this, "Camera permission denied!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -144,8 +132,7 @@ public class HomePageActivity extends AppCompatActivity {
         camBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,101);
+                ActivityCompat.requestPermissions(HomePageActivity.this, new String[]{Manifest.permission.CAMERA}, Constants.S_PERMISSION_REQUEST_CODE_CAMERA);
             }
         });
 
@@ -198,7 +185,34 @@ public class HomePageActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if(requestCode==101 && data != null){
+        if(requestCode==Constants.S_PERMISSION_REQUEST_CODE_CAMERA && data != null){
+            AlertDialog.Builder alert = new AlertDialog.Builder(HomePageActivity.this);
+            alert.setTitle(Constants.S_EMOTION)
+                    .setMessage("Is the emotion analyzed correct?")
+                    .setIcon(R.drawable.icon_full_heart)
+                    .setCancelable(false)
+                    .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+
+                            Intent intent = new Intent(HomePageActivity.this, FilterPageActivity.class);
+                            startActivity(intent);
+                        }
+                    })
+                    .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(HomePageActivity.this, new String[]{Manifest.permission.CAMERA}, Constants.S_PERMISSION_REQUEST_CODE_CAMERA);
+                        }
+                    });
+
+            AlertDialog dialog = alert.create();
+            dialog.show();
+            dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+
+
             bitmap = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
             emotionPhotoImageView.setImageBitmap(bitmap);
 
@@ -249,7 +263,11 @@ public class HomePageActivity extends AppCompatActivity {
                             if (birthMonth > currentMonth || (birthMonth == currentMonth && birthDay > currentDay)) {
                                 age--;
                             }
+
+                            Constants.S_AGE = age;
                         }
+                    }else if(Objects.equals(snp.getKey(), "gender")){
+                        Constants.S_GENDER = snp.getValue().toString();
                     }
                 }
             }

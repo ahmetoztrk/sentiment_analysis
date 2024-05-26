@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white">
 
@@ -121,6 +122,17 @@
             android:gravity="right">
         </ImageButton>
     </RelativeLayout>
+
+    <Switch
+        android:id="@+id/remember_me_switch_compat"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Remember me!"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:layout_gravity="center"
+        tools:ignore="UseSwitchCompatOrMaterialXml">
+    </Switch>
 
     <Button
         android:id="@+id/login_btn"

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -186,11 +187,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(Constants.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random music names.");
-        }else{
-            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " music names.");
-        }
+        GetSuggestion("music");
     }
 
     @SuppressLint("SetTextI18n")
@@ -200,11 +197,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(Constants.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random series names.");
-        }else{
-            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " series names.");
-        }
+        GetSuggestion("series");
     }
 
     @SuppressLint("SetTextI18n")
@@ -214,11 +207,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(Constants.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random movie names.");
-        }else{
-            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " movie names.");
-        }
+        GetSuggestion("movie");
     }
 
     @SuppressLint("SetTextI18n")
@@ -228,11 +217,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(Constants.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random book names.");
-        }else{
-            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " book names.");
-        }
+        GetSuggestion("book");
     }
 
     @SuppressLint("SetTextI18n")
@@ -242,11 +227,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        if(Constants.S_EMOTION.equals("No Emotion")){
-            GeminiAPIGetTitle("Give " + Constants.S_ADAPTER_SIZE + " random activity names.");
-        }else{
-            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " activity names.");
-        }
+        GetSuggestion("activity");
     }
 
     private void GeminiAPIGetTitle(String query){
@@ -331,5 +312,22 @@ public class SuggestionPageActivity extends AppCompatActivity {
                 FileOperations.addFile(getApplicationContext(), activityText + ".txt", currentTime + "\n\n");
             }
         }
+    }
+
+    private void GetSuggestion(String categoryName){
+        if(Constants.S_AGE_OPTION && Constants.S_GENDER_OPTION){
+            GeminiAPIGetTitle("I am " + Constants.S_AGE + " years old and " + Constants.S_GENDER + ". Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my age and gender.");
+        }else if(Constants.S_AGE_OPTION && !Constants.S_GENDER_OPTION){
+            GeminiAPIGetTitle("I am " + Constants.S_AGE + " years old. Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my age.");
+        }else if(!Constants.S_AGE_OPTION && Constants.S_GENDER_OPTION){
+            GeminiAPIGetTitle("I am " + Constants.S_GENDER + ". Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my gender.");
+        }else{
+            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names.");
+        }
+
+        Toast.makeText(SuggestionPageActivity.this, "S_AGE_OPTION " + Constants.S_AGE_OPTION, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SuggestionPageActivity.this, "S_GENDER_OPTION " + Constants.S_GENDER_OPTION, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SuggestionPageActivity.this, "S_AGE " + Constants.S_AGE, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SuggestionPageActivity.this, "S_GENDER " + Constants.S_GENDER, Toast.LENGTH_SHORT).show();
     }
 }

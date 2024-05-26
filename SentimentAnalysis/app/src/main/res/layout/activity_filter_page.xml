@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#FFFFFF"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/filter_page_title_tv"
@@ -23,7 +23,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/filter_page_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="325dp"
         android:layout_centerInParent="true"
         android:foregroundGravity="center"
         android:overScrollMode="never">
@@ -32,8 +32,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="150dp"
+        android:layout_marginTop="20dp"
         android:text="Current Mood"
         android:textStyle="italic"
         android:textSize="50sp"
@@ -44,13 +43,37 @@
     <TextView
         android:id="@+id/current_mood_tv"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="75dp"
-        android:text="'Neutral'"
+        android:layout_height="55dp"
+        android:text="'No Emotion'"
         android:textStyle="italic"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:gravity="center"
-        android:textColor="@color/black">
+        android:textColor="@color/black" >
     </TextView>
-</RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/suggestion_age_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Make the suggestions age appropriate!"
+        android:textStyle="italic"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="20sp"
+        android:textColor="@color/black">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/suggestion_gender_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Make the suggestions gender appropriate!"
+        android:textStyle="italic"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="20sp"
+        android:textColor="@color/black">
+    </CheckBox>
+</LinearLayout>

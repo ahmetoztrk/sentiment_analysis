@@ -1,6 +1,8 @@
 package com.example.sentimentanalysis.Analyzing.FilterPage;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ public class FilterPageActivity extends AppCompatActivity {
 
     ViewPager filterPageViewPager;
     TextView filterPageCurrentMoodTextView;
+    CheckBox suggestionAgeCheckBox, suggestionGenderCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +30,15 @@ public class FilterPageActivity extends AppCompatActivity {
         init();
 
         loadCards();
+
+        setButtonsListener();
     }
 
     private void init(){
         filterPageViewPager = findViewById(R.id.filter_page_vp);
         filterPageCurrentMoodTextView = findViewById(R.id.current_mood_tv);
+        suggestionAgeCheckBox = findViewById(R.id.suggestion_age_check_box);
+        suggestionGenderCheckBox = findViewById(R.id.suggestion_gender_check_box);
 
         filterPageCurrentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
     }
@@ -69,5 +76,21 @@ public class FilterPageActivity extends AppCompatActivity {
         filterPageViewPager.setAdapter(filterPageAdapter);
 
         filterPageViewPager.setPadding(100,0,100,0);
+    }
+
+    private void setButtonsListener(){
+        suggestionAgeCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Constants.S_AGE_OPTION = suggestionAgeCheckBox.isChecked();
+            }
+        });
+
+        suggestionGenderCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Constants.S_GENDER_OPTION = suggestionGenderCheckBox.isChecked();
+            }
+        });
     }
 }
