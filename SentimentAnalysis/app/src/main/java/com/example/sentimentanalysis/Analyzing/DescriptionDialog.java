@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.sentimentanalysis.R;
@@ -34,6 +35,7 @@ public class DescriptionDialog {
         customDialogDescriptionTextView.setText(description);
 
         dialog = builder.create();
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         dialog.show();
     }
 
