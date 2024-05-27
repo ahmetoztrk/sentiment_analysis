@@ -266,7 +266,13 @@ public class HomePageActivity extends AppCompatActivity {
                             Constants.S_AGE = age;
                         }
                     }else if(Objects.equals(snp.getKey(), "gender")){
-                        Constants.S_GENDER = snp.getValue().toString();
+                        if(snp.getValue().toString().equals("male")){
+                            Constants.S_GENDER = getString(R.string.Male);
+                        }else if(snp.getValue().toString().equals("female")){
+                            Constants.S_GENDER = getString(R.string.Female);
+                        }else{
+                            Constants.S_GENDER = getString(R.string.Other);
+                        }
                     }
                 }
             }

@@ -67,6 +67,19 @@
     <string name="Make_the_suggestions_age_appropriate">"Make the suggestions age appropriate!"</string>
     <string name="Make_the_suggestions_gender_appropriate">"Make the suggestions gender appropriate!"</string>
 
+    <string name="music">"music"</string>
+    <string name="series">"series"</string>
+    <string name="movie">"movie"</string>
+    <string name="book">"book"</string>
+    <string name="activity">"activity"</string>
+
+    <string name="query_description">"Give a brief description of %1$s."</string>
+
+    <string name="query_age_and_gender">"I am %1$d years old and %2$s. Give me %3$d random %4$s %5$s names suitable for my age and gender."</string>
+    <string name="query_age">"I am %1$d years old. Give me %2$d random %3$s %4$s names suitable for my age."</string>
+    <string name="query_gender">"I am %1$s. Give me %2$d random %3$s %4$s names suitable for my gender."</string>
+    <string name="query">"Give me %1$d random %2$s %3$s names."</string>
+
     <!--HomePageActivity-->
     <string name="Welcome">"Welcome"</string>
     <string name="Username">"Username"</string>
@@ -93,6 +106,7 @@
     <string name="Gender">"Gender"</string>
     <string name="Male">"Male"</string>
     <string name="Female">"Female"</string>
+    <string name="Other">"Other"</string>
     <string name="Delete">"Delete"</string>
     <string name="Update">"Update"</string>
     <string name="Back">"Back"</string>

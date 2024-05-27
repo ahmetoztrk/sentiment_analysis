@@ -68,6 +68,19 @@
     <string name="Make_the_suggestions_age_appropriate">"Önerileri yaşa uygun hale getir!"</string>
     <string name="Make_the_suggestions_gender_appropriate">"Önerileri cinsiyete uygun hale getir!"</string>
 
+    <string name="music">"müzik"</string>
+    <string name="series">"dizi"</string>
+    <string name="movie">"film"</string>
+    <string name="book">"kitap"</string>
+    <string name="activity">"aktivite"</string>
+
+    <string name="query_description">"%1$s hakkında kısa bir açıklama ver."</string>
+
+    <string name="query_age_and_gender">"Ben %1$d yaşındayım ve cinsiyetim %2$s. Bana yaşıma ve cinsiyetime uygun %3$d rastgele %4$s %5$s ismi ver."</string>
+    <string name="query_age">"Ben %1$d yaşındayım. Bana yaşıma uygun %2$d rastgele %3$s %4$s ismi ver."</string>
+    <string name="query_gender">"Benim cinsiyetim %1$s. Bana cinsiyetime uygun %2$d rastgele %3$s %4$s ismi ver."</string>
+    <string name="query">"Bana %1$d rastgele %2$s %3$s ismi ver."</string>
+
     <!--HomePageActivity-->
     <string name="Welcome">"Hoş geldin"</string>
     <string name="Username">"Kullanıcı adı"</string>
@@ -94,6 +107,7 @@
     <string name="Gender">"Cinsiyet"</string>
     <string name="Male">"Erkek"</string>
     <string name="Female">"Kadın"</string>
+    <string name="Other">"Diğer"</string>
     <string name="Delete">"Sil"</string>
     <string name="Update">"Güncelle"</string>
     <string name="Back">"Geri"</string>

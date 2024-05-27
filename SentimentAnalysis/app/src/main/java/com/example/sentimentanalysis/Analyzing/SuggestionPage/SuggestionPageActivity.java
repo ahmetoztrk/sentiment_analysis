@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -205,7 +206,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        GetSuggestion("music");
+        GetSuggestion(getString(R.string.music));
     }
 
     @SuppressLint("SetTextI18n")
@@ -215,7 +216,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        GetSuggestion("series");
+        GetSuggestion(getString(R.string.series));
     }
 
     @SuppressLint("SetTextI18n")
@@ -225,7 +226,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        GetSuggestion("movie");
+        GetSuggestion(getString(R.string.movie));
     }
 
     @SuppressLint("SetTextI18n")
@@ -235,7 +236,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        GetSuggestion("book");
+        GetSuggestion(getString(R.string.book));
     }
 
     @SuppressLint("SetTextI18n")
@@ -245,7 +246,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         suggestionLoadingDialog.StartLoadingDialog();
 
-        GetSuggestion("activity");
+        GetSuggestion(getString(R.string.activity));
     }
 
     private void GeminiAPIGetTitle(String query){
@@ -273,7 +274,11 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
                     title[i] = title[i].substring(3);
 
-                    GeminiAPIGetDescription("Give a brief description of " + title[i] + ".", i);
+                    GeminiAPIGetDescription(getString(R.string.query_description, title[i]), i);
+
+                    if(Constants.S_DEBUG_MODE){
+                        Toast.makeText(SuggestionPageActivity.this, getString(R.string.query_description, title[i]), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
 
@@ -334,13 +339,61 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     private void GetSuggestion(String categoryName){
         if(Constants.S_AGE_OPTION && Constants.S_GENDER_OPTION){
-            GeminiAPIGetTitle("I am " + Constants.S_AGE + " years old and " + Constants.S_GENDER + ". Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my age and gender.");
+            GeminiAPIGetTitle(getString(R.string.query_age_and_gender,
+                    Constants.S_AGE,
+                    Constants.S_GENDER,
+                    Constants.S_ADAPTER_SIZE,
+                    Constants.S_EMOTION,
+                    categoryName));
+
+            if(Constants.S_DEBUG_MODE) {
+                Toast.makeText(SuggestionPageActivity.this, getString(R.string.query_age_and_gender,
+                        Constants.S_AGE,
+                        Constants.S_GENDER,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName), Toast.LENGTH_LONG).show();
+            }
         }else if(Constants.S_AGE_OPTION){
-            GeminiAPIGetTitle("I am " + Constants.S_AGE + " years old. Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my age.");
+            GeminiAPIGetTitle(getString(R.string.query_age,
+                    Constants.S_AGE,
+                    Constants.S_ADAPTER_SIZE,
+                    Constants.S_EMOTION,
+                    categoryName));
+
+            if(Constants.S_DEBUG_MODE) {
+                Toast.makeText(SuggestionPageActivity.this, getString(R.string.query_age,
+                        Constants.S_AGE,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName), Toast.LENGTH_LONG).show();
+            }
         }else if(Constants.S_GENDER_OPTION){
-            GeminiAPIGetTitle("I am " + Constants.S_GENDER + ". Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my gender.");
+            GeminiAPIGetTitle(getString(R.string.query_gender,
+                    Constants.S_GENDER,
+                    Constants.S_ADAPTER_SIZE,
+                    Constants.S_EMOTION,
+                    categoryName));
+
+            if(Constants.S_DEBUG_MODE) {
+                Toast.makeText(SuggestionPageActivity.this, getString(R.string.query_gender,
+                        Constants.S_GENDER,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName), Toast.LENGTH_LONG).show();
+            }
         }else{
-            GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names.");
+            GeminiAPIGetTitle(getString(R.string.query,
+                    Constants.S_ADAPTER_SIZE,
+                    Constants.S_EMOTION,
+                    categoryName));
+
+            if(Constants.S_DEBUG_MODE) {
+                Toast.makeText(SuggestionPageActivity.this, getString(R.string.query,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName), Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
