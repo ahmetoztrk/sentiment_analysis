@@ -102,7 +102,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
             suggestionPageModelArrayList.add(new SuggestionPageModel(
                     title[i],
                     description[i],
-                    R.drawable.ic_launcher_background));
+                    getIcon()));
         }
 
         suggestionPageAdapter = new SuggestionPageAdapter(this, suggestionPageModelArrayList);
@@ -110,6 +110,25 @@ public class SuggestionPageActivity extends AppCompatActivity {
         suggestionPageViewPager.setAdapter(suggestionPageAdapter);
 
         suggestionPageViewPager.setPadding(100,0,100,0);
+    }
+
+    private int getIcon(){
+        Intent intent = getIntent();
+        int position = intent.getIntExtra("position",0);
+
+        if(position == 0){
+            return R.drawable.icon_musics;
+        }else if(position == 1){
+            return R.drawable.icon_series;
+        }else if(position == 2){
+            return R.drawable.icon_movies;
+        }else if(position == 3){
+            return R.drawable.icon_books;
+        }else if(position == 4){
+            return R.drawable.icon_activities;
+        }else{
+            return R.drawable.icon_profile_1;
+        }
     }
 
     private void setButtonsListener(){
