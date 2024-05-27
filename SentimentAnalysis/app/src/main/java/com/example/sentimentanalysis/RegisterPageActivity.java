@@ -124,13 +124,13 @@ public class RegisterPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(usernameEditText.getText().toString().isEmpty()){
-                    usernameInfoTextView.setText("Empty!");
+                    usernameInfoTextView.setText(R.string.Empty);
                 }else{
                     usernameInfoTextView.setText("");
                 }
 
                 if(eMailAddressEditText.getText().toString().isEmpty()){
-                    eMailAddressInfoTextView.setText("Empty!");
+                    eMailAddressInfoTextView.setText(R.string.Empty);
                 }else{
                     Pattern pattern;
                     Matcher matcher;
@@ -140,32 +140,32 @@ public class RegisterPageActivity extends AppCompatActivity {
                     matcher = pattern.matcher(cs);
 
                     if(!matcher.matches()){
-                        eMailAddressInfoTextView.setText("Invalid email");
+                        eMailAddressInfoTextView.setText(R.string.Invalid_email);
                     }else{
                         eMailAddressInfoTextView.setText("");
                     }
                 }
 
                 if(ageTextView.getText().toString().isEmpty()){
-                    ageInfoTextView.setText("Empty!");
+                    ageInfoTextView.setText(R.string.Empty);
                 }else{
                     ageInfoTextView.setText("");
                 }
 
                 if(passwordEditText.getText().toString().isEmpty()){
-                    passwordInfoTextView.setText("Empty!");
+                    passwordInfoTextView.setText(R.string.Empty);
                 }else{
                     passwordInfoTextView.setText("");
                 }
 
                 if(rePasswordEditText.getText().toString().isEmpty()){
-                    rePasswordInfoTextView.setText("Empty!");
+                    rePasswordInfoTextView.setText(R.string.Empty);
                 }else{
                     if(!passwordEditText.getText().toString().equals(rePasswordEditText.getText().toString())){
-                        rePasswordInfoTextView.setText("Not the same!");
+                        rePasswordInfoTextView.setText(R.string.Not_the_same);
                     }else{
                         if(passwordEditText.getText().toString().length() < 7){
-                            passwordInfoTextView.setText("At least 7!");
+                            passwordInfoTextView.setText(R.string.At_least_7);
                             rePasswordInfoTextView.setText("");
                         }else {
                             rePasswordInfoTextView.setText("");
@@ -174,7 +174,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                 }
 
                 if(!maleRadioBtn.isChecked() && !femaleRadioBtn.isChecked()){
-                    genderInfoTextView.setText("Empty!");
+                    genderInfoTextView.setText(R.string.Empty);
                 }else{
                     genderInfoTextView.setText("");
                 }
@@ -183,7 +183,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                     auth.createUserWithEmailAndPassword(eMailAddressEditText.getText().toString(), passwordEditText.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(RegisterPageActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterPageActivity.this, R.string.Registration_Successful, Toast.LENGTH_SHORT).show();
 
                             user = auth.getCurrentUser();
 

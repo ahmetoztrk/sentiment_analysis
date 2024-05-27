@@ -24,7 +24,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="Username"
+            android:text="@string/Username"
             android:textColor="#ACACAC"
             android:textSize="17dp"
             android:paddingLeft="17dp">
@@ -52,7 +52,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:paddingLeft="15dp"
-        android:hint="Name Surname"
+        android:hint="@string/Name_Surname"
         android:textSize="17dp"
         android:textColor="#ACACAC"
         android:background="@drawable/custom_edge"
@@ -70,7 +70,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="E-mail Address"
+            android:text="@string/E_mail_Address"
             android:textColor="#ACACAC"
             android:textSize="17dp"
             android:paddingLeft="17dp">
@@ -98,7 +98,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:paddingLeft="15dp"
-        android:hint="example@email.com"
+        android:hint="@string/example_email_com"
         android:textSize="17dp"
         android:textColor="#ACACAC"
         android:background="@drawable/custom_edge"
@@ -116,7 +116,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="Age"
+            android:text="@string/Age"
             android:textColor="#ACACAC"
             android:textSize="17dp"
             android:paddingLeft="17dp">
@@ -162,7 +162,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="Password"
+            android:text="@string/Password"
             android:textColor="#ACACAC"
             android:textSize="17dp"
             android:paddingLeft="17dp">
@@ -208,7 +208,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="Re-Password"
+            android:text="@string/Re_Password"
             android:textColor="#ACACAC"
             android:textSize="17dp"
             android:paddingLeft="17dp">
@@ -254,7 +254,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="Gender"
+            android:text="@string/Gender"
             android:textColor="#ACACAC"
             android:textSize="17dp"
             android:paddingLeft="17dp">
@@ -284,7 +284,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="Male"
+            android:text="@string/Male"
             android:drawableStart="@drawable/icon_male"
             android:textColor="#ACACAC"
             android:textSize="17dp">
@@ -296,7 +296,7 @@
             android:layout_height="20dp"
             android:layout_marginRight="50dp"
             android:layout_alignParentRight="true"
-            android:text="Female"
+            android:text="@string/Female"
             android:drawableStart="@drawable/icon_female"
             android:textColor="#ACACAC"
             android:textSize="17dp">
@@ -310,7 +310,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="125dp"
         android:layout_marginLeft="125dp"
-        android:text="Delete">
+        android:text="@string/Delete">
     </Button>
 
     <Button
@@ -319,7 +319,7 @@
         android:layout_height="50dp"
         android:layout_marginRight="125dp"
         android:layout_marginLeft="125dp"
-        android:text="Update">
+        android:text="@string/Update">
     </Button>
 
     <Button
@@ -327,6 +327,6 @@
         android:layout_height="50dp"
         android:layout_marginRight="125dp"
         android:layout_marginLeft="125dp"
-        android:text="Back">
+        android:text="@string/Back">
     </Button>
 </LinearLayout>

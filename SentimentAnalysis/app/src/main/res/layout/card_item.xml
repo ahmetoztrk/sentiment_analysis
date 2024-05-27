@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="The Title"
+                android:text="@string/Title"
                 android:textColor="#000"
                 android:textSize="18sp" />
 
@@ -46,7 +46,7 @@
                 android:minLines="3"
                 android:layout_margin="8dp"
                 android:textColor="#000"
-                android:text="Description" />
+                android:text="@string/Description" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

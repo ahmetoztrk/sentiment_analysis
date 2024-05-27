@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,8 +67,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
         description = new String[Constants.S_ADAPTER_SIZE];
 
         for(int i=0; i<Constants.S_ADAPTER_SIZE; i++){
-            title[i] = "Title " + i;
-            description[i] = "Description " + i;
+            title[i] = getString(R.string.Title) + i;
+            description[i] = getString(R.string.Description) + i;
         }
 
         likeButton1 = findViewById(R.id.like_1_image_button);
@@ -182,7 +181,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetMusics(){
-        activityText = "Musics";
+        activityText = getString(R.string.Musics);
         titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
@@ -192,7 +191,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetSeries(){
-        activityText = "Series";
+        activityText = getString(R.string.Series);
         titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
@@ -202,7 +201,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetMovies(){
-        activityText = "Movies";
+        activityText = getString(R.string.Movies);
         titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
@@ -212,7 +211,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetBooks(){
-        activityText = "Books";
+        activityText = getString(R.string.Books);
         titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
@@ -222,7 +221,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void GetActivities(){
-        activityText = "Activities";
+        activityText = getString(R.string.Activities);
         titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
@@ -317,17 +316,12 @@ public class SuggestionPageActivity extends AppCompatActivity {
     private void GetSuggestion(String categoryName){
         if(Constants.S_AGE_OPTION && Constants.S_GENDER_OPTION){
             GeminiAPIGetTitle("I am " + Constants.S_AGE + " years old and " + Constants.S_GENDER + ". Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my age and gender.");
-        }else if(Constants.S_AGE_OPTION && !Constants.S_GENDER_OPTION){
+        }else if(Constants.S_AGE_OPTION){
             GeminiAPIGetTitle("I am " + Constants.S_AGE + " years old. Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my age.");
-        }else if(!Constants.S_AGE_OPTION && Constants.S_GENDER_OPTION){
+        }else if(Constants.S_GENDER_OPTION){
             GeminiAPIGetTitle("I am " + Constants.S_GENDER + ". Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names suitable for my gender.");
         }else{
             GeminiAPIGetTitle("Give me " + Constants.S_ADAPTER_SIZE + " random " + Constants.S_EMOTION + " " + categoryName + " names.");
         }
-
-        Toast.makeText(SuggestionPageActivity.this, "S_AGE_OPTION " + Constants.S_AGE_OPTION, Toast.LENGTH_SHORT).show();
-        Toast.makeText(SuggestionPageActivity.this, "S_GENDER_OPTION " + Constants.S_GENDER_OPTION, Toast.LENGTH_SHORT).show();
-        Toast.makeText(SuggestionPageActivity.this, "S_AGE " + Constants.S_AGE, Toast.LENGTH_SHORT).show();
-        Toast.makeText(SuggestionPageActivity.this, "S_GENDER " + Constants.S_GENDER, Toast.LENGTH_SHORT).show();
     }
 }

@@ -40,35 +40,35 @@ public class FilterPageActivity extends AppCompatActivity {
         suggestionAgeCheckBox = findViewById(R.id.suggestion_age_check_box);
         suggestionGenderCheckBox = findViewById(R.id.suggestion_gender_check_box);
 
-        filterPageCurrentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
+        filterPageCurrentMoodTextView.setText(Constants.S_EMOTION);
     }
 
     private void loadCards(){
         filterPageModelArrayList = new ArrayList<>();
 
         filterPageModelArrayList.add(new FilterPageModel(
-                "Musics",
-                "5 different musics were selected according to your feelings.",
+                getString(R.string.Musics),
+                getString(R.string.different_musics_were_selected_according_to_your_feelings),
                 R.drawable.icon_musics));
 
         filterPageModelArrayList.add(new FilterPageModel(
-                "Series",
-                "5 different series were selected according to your feelings.",
+                getString(R.string.Series),
+                getString(R.string.different_series_were_selected_according_to_your_feelings),
                 R.drawable.icon_series));
 
         filterPageModelArrayList.add(new FilterPageModel(
-                "Movies",
-                "5 different movies were selected according to your feelings.",
+                getString(R.string.Movies),
+                getString(R.string.different_movies_were_selected_according_to_your_feelings),
                 R.drawable.icon_movies));
 
         filterPageModelArrayList.add(new FilterPageModel(
-                "Books",
-                "5 different books were selected according to your feelings.",
+                getString(R.string.Books),
+                getString(R.string.different_books_were_selected_according_to_your_feelings),
                 R.drawable.icon_books));
 
         filterPageModelArrayList.add(new FilterPageModel(
-                "Activities",
-                "5 different activities were selected according to your feelings.",
+                getString(R.string.Activities),
+                getString(R.string.different_activities_were_selected_according_to_your_feelings),
                 R.drawable.icon_activities));
 
         filterPageAdapter = new FilterPageAdapter(this, filterPageModelArrayList);

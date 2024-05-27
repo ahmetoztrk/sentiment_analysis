@@ -131,11 +131,11 @@ public class ProfilePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(ProfilePageActivity.this);
-                alert.setTitle("Delete Account")
-                        .setMessage("Do you want to delete your account?")
+                alert.setTitle(R.string.Delete_Account)
+                        .setMessage(R.string.Do_you_want_to_delete_your_account)
                         .setIcon(R.drawable.icon_books)
                         .setCancelable(false)
-                        .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.Yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 finish();
@@ -146,7 +146,7 @@ public class ProfilePageActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         })
-                        .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.No, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
@@ -159,23 +159,21 @@ public class ProfilePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(ProfilePageActivity.this);
-                alert.setTitle("Update Account")
-                        .setMessage("Do you want to update your account?")
+                alert.setTitle(R.string.Update_Account)
+                        .setMessage(R.string.Do_you_want_to_update_your_account)
                         .setIcon(R.drawable.icon_movies)
                         .setCancelable(false)
-                        .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.Yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-
                                 if(usernameEditText.getText().toString().isEmpty()){
-                                    usernameInfoTextView.setText("Empty!");
+                                    usernameInfoTextView.setText(R.string.Empty);
                                 }else{
                                     usernameInfoTextView.setText("");
                                 }
 
                                 if(eMailAddressEditText.getText().toString().isEmpty()){
-                                    eMailAddressInfoTextView.setText("Empty!");
+                                    eMailAddressInfoTextView.setText(R.string.Empty);
                                 }else{
                                     Pattern pattern;
                                     Matcher matcher;
@@ -185,32 +183,32 @@ public class ProfilePageActivity extends AppCompatActivity {
                                     matcher = pattern.matcher(cs);
 
                                     if(!matcher.matches()){
-                                        eMailAddressInfoTextView.setText("Invalid email");
+                                        eMailAddressInfoTextView.setText(R.string.Invalid_email);
                                     }else{
                                         eMailAddressInfoTextView.setText("");
                                     }
                                 }
 
                                 if(ageTextView.getText().toString().isEmpty()){
-                                    ageInfoTextView.setText("Empty!");
+                                    ageInfoTextView.setText(R.string.Empty);
                                 }else{
                                     ageInfoTextView.setText("");
                                 }
 
                                 if(passwordEditText.getText().toString().isEmpty()){
-                                    passwordInfoTextView.setText("Empty!");
+                                    passwordInfoTextView.setText(R.string.Empty);
                                 }else{
                                     passwordInfoTextView.setText("");
                                 }
 
                                 if(rePasswordEditText.getText().toString().isEmpty()){
-                                    rePasswordInfoTextView.setText("Empty!");
+                                    rePasswordInfoTextView.setText(R.string.Empty);
                                 }else{
                                     if(!passwordEditText.getText().toString().equals(rePasswordEditText.getText().toString())){
-                                        rePasswordInfoTextView.setText("Not the same!");
+                                        rePasswordInfoTextView.setText(R.string.Not_the_same);
                                     }else{
                                         if(passwordEditText.getText().toString().length() < 7){
-                                            passwordInfoTextView.setText("At least 7 characters!");
+                                            passwordInfoTextView.setText(R.string.At_least_7);
                                             rePasswordInfoTextView.setText("");
                                         }else {
                                             rePasswordInfoTextView.setText("");
@@ -219,7 +217,7 @@ public class ProfilePageActivity extends AppCompatActivity {
                                 }
 
                                 if(!maleRadioBtn.isChecked() && !femaleRadioBtn.isChecked()){
-                                    genderInfoTextView.setText("Empty!");
+                                    genderInfoTextView.setText(R.string.Empty);
                                 }else{
                                     genderInfoTextView.setText("");
                                 }
@@ -241,9 +239,11 @@ public class ProfilePageActivity extends AppCompatActivity {
 
                                     FirebaseAPIUpdateData(user.getUid(), data);
                                 }
+
+                                dialogInterface.dismiss();
                             }
                         })
-                        .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.No, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();

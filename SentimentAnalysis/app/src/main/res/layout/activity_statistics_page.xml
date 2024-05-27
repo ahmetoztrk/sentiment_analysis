@@ -66,7 +66,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/musics_btn"
                 android:layout_weight="1"
-                android:text="Musics"
+                android:text="@string/Musics"
                 android:textColor="@color/white"
                 android:gravity="center">
             </TextView>
@@ -76,7 +76,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/series_btn"
                 android:layout_weight="1"
-                android:text="Series"
+                android:text="@string/Series"
                 android:textColor="@color/white"
                 android:gravity="center">
             </TextView>
@@ -86,7 +86,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/movies_btn"
                 android:layout_weight="1"
-                android:text="Movies"
+                android:text="@string/Movies"
                 android:textColor="@color/white"
                 android:gravity="center">
             </TextView>
@@ -96,7 +96,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/books_btn"
                 android:layout_weight="1"
-                android:text="Books"
+                android:text="@string/Books"
                 android:textColor="@color/white"
                 android:gravity="center">
             </TextView>
@@ -106,7 +106,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/activities_btn"
                 android:layout_weight="1"
-                android:text="Activities"
+                android:text="@string/Activities"
                 android:textColor="@color/white"
                 android:gravity="center">
             </TextView>

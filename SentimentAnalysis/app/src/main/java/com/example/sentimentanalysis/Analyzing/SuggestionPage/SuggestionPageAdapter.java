@@ -68,7 +68,7 @@ public class SuggestionPageAdapter extends PagerAdapter {
                 for(int i = 0; i<Constants.S_ADAPTER_SIZE; i++) {
                     if (position == i) {
                         if(Constants.S_DEBUG_MODE) {
-                            Toast.makeText(context, "Position " + i, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.Position + i, Toast.LENGTH_SHORT).show();
                         }
 
                         descriptionLoadingDialog.StartLoadingDialog(title, description);

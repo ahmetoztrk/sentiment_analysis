@@ -1,3 +1,103 @@
 <resources>
     <string name="app_name">SentimentAnalysis</string>
+
+    <!--RegisterPageActivity, ProfilePageActivity, MainActivity-->
+    <string name="Empty">"Empty!"</string>
+    <string name="Not_the_same">"Not the same!"</string>
+    <string name="At_least_7">"At least 7!"</string>
+    <string name="Invalid_email">"Invalid email"</string>
+    <string name="Registration_Successful">"Registration Successful!"</string>
+    <string name="Yes">"Yes"</string>
+    <string name="No">"No"</string>
+    <string name="Delete_Account">"Delete Account"</string>
+    <string name="Do_you_want_to_delete_your_account">"Do you want to delete your account?"</string>
+    <string name="Update_Account">"Update Account"</string>
+    <string name="Do_you_want_to_update_your_account">"Do you want to update your account?"</string>
+    <string name="Wrong_entry">"Wrong entry!"</string>
+    <string name="Login_Successful">"Login Successful!"</string>
+
+    <!--Device permissions-->
+    <string name="Manage_External_Storage_permission_granted">"Manage External Storage permission granted!"</string>
+    <string name="Manage_External_Storage_permission_denied">"Manage External Storage permission denied!"</string>
+    <string name="Write_External_Storage_permission_granted">"Write External Storage permission granted!"</string>
+    <string name="Write_External_Storage_permission_denied">"Write External Storage permission denied!"</string>
+    <string name="Read_External_Storage_permission_granted">"Read External Storage permission granted!"</string>
+    <string name="Read_External_Storage_permission_denied">"Read External Storage permission denied!"</string>
+    <string name="Camera_permission_granted">"Camera permission granted!"</string>
+    <string name="Camera_permission_denied">"Camera permission denied!"</string>
+
+    <!--Logs-->
+    <string name="Facial_Expression_Classifier_is_loaded">"Facial Expression Classifier is loaded."</string>
+    <string name="Facial_Expression_Model_is_loaded">"Facial Expression Model is loaded."</string>
+    <string name="Application_is_starting">"Application is starting."</string>
+    <string name="Application_failed_to_start">"Application failed to start!"</string>
+    <string name="Is_the_emotion_analyzed_correct">"Is the emotion analyzed correct?"</string>
+
+    <!--Emotions-->
+    <string name="No_Emotion">"No Emotion"</string>
+    <string name="Surprise">"Surprise"</string>
+    <string name="Fear">"Fear"</string>
+    <string name="Angry">"Angry"</string>
+    <string name="Neutral">"Neutral"</string>
+    <string name="Sad">"Sad"</string>
+    <string name="Disgust">"Disgust"</string>
+    <string name="Happy">"Happy"</string>
+
+    <!--Categories-->
+    <string name="Musics">"Musics"</string>
+    <string name="Series">"Series"</string>
+    <string name="Movies">"Movies"</string>
+    <string name="Books">"Books"</string>
+    <string name="Activities">"Activities"</string>
+
+    <!--FilterPageActivity-->
+    <string name="different_musics_were_selected_according_to_your_feelings">"5 different musics were selected according to your feelings."</string>
+    <string name="different_series_were_selected_according_to_your_feelings">"5 different series were selected according to your feelings."</string>
+    <string name="different_movies_were_selected_according_to_your_feelings">"5 different movies were selected according to your feelings."</string>
+    <string name="different_books_were_selected_according_to_your_feelings">"5 different books were selected according to your feelings."</string>
+    <string name="different_activities_were_selected_according_to_your_feelings">"5 different activities were selected according to your feelings."</string>
+
+    <string name="Position">"Position "</string>
+    <string name="Title">"Title "</string>
+    <string name="Description">"Description "</string>
+
+    <!--SuggestionPageActivity-->
+    <string name="Categories">"Categories"</string>
+    <string name="Current_Mood">"Current Mood"</string>
+    <string name="Make_the_suggestions_age_appropriate">"Make the suggestions age appropriate!"</string>
+    <string name="Make_the_suggestions_gender_appropriate">"Make the suggestions gender appropriate!"</string>
+
+    <!--HomePageActivity-->
+    <string name="Welcome">"Welcome"</string>
+    <string name="Username">"Username"</string>
+    <string name="Camera">"Camera"</string>
+    <string name="Statistics">"Statistics"</string>
+    <string name="GUI_Test">"GUI Test"</string>
+    <string name="Profile">"Profile"</string>
+    <string name="Exit">"Exit"</string>
+
+    <!--activity_main-->
+    <string name="Choose_app_language">"Choose app language"</string>
+    <string name="Languages">"Languages"</string>
+    <string name="E_mail_Address">"E-mail Address"</string>
+    <string name="example_email_com">"example@email.com"</string>
+    <string name="Password">"Password"</string>
+    <string name="Remember_me">"Remember me!"</string>
+    <string name="Login">"Login"</string>
+    <string name="Register">"Register"</string>
+
+    <!--activity_profile_page, activity_register_page-->
+    <string name="Name_Surname">"Name Surname"</string>
+    <string name="Age">"Age"</string>
+    <string name="Re_Password">"Re-Password"</string>
+    <string name="Gender">"Gender"</string>
+    <string name="Male">"Male"</string>
+    <string name="Female">"Female"</string>
+    <string name="Delete">"Delete"</string>
+    <string name="Update">"Update"</string>
+    <string name="Back">"Back"</string>
+
+    <!--custom_dialog_1, custom_dialog_2-->
+    <string name="Your_emotional_state_is">"Your emotional state is"</string>
+    <string name="Recommendations_are_being_created">"Recommendations are being created."</string>
 </resources>

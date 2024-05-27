@@ -2,14 +2,17 @@ package com.example.sentimentanalysis;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
 
+    Spinner languageSpinner;
     EditText eMailAddressEditText, passwordEditText;
     TextView eMailAddressInfoTextView, passwordInfoTextView;
     Switch rememberMeSwitchCompat;
@@ -40,9 +46,13 @@ public class MainActivity extends AppCompatActivity {
     boolean passwordOpenClose;
     int passwordEditTextInputType;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initConfigs();
+
         setContentView(R.layout.activity_main);
 
         getPermission();
@@ -52,6 +62,38 @@ public class MainActivity extends AppCompatActivity {
         initFirebase();
 
         setButtonsListener();
+    }
+
+    private void initConfigs(){
+        if(FileOperations.getOptionValue(getApplicationContext(),"config.txt","language").equals("")){
+            FileOperations.addFile(getApplicationContext(),"config.txt","language=en");
+
+            setLanguage("en");
+        }else{
+            if(FileOperations.getOptionValue(getApplicationContext(),"config.txt","language").equals("en")){
+                setLanguage("en");
+            }else{
+                setLanguage("tr");
+            }
+        }
+
+        if(FileOperations.getOptionValue(getApplicationContext(),"config.txt","remember_me_option").equals("")){
+            FileOperations.addFile(getApplicationContext(),"config.txt","remember_me_option=false");
+        }
+
+        if(FileOperations.getOptionValue(getApplicationContext(),"config.txt","password").equals("")){
+            FileOperations.addFile(getApplicationContext(),"config.txt","password=");
+        }
+    }
+
+    private void setLanguage(String langCode){
+        Locale locale = new Locale(langCode);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        FileOperations.setOptionValue(getApplicationContext(),"config.txt","language", langCode);
     }
 
     private void getPermission() {
@@ -76,28 +118,29 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == Constants.S_PERMISSION_REQUEST_CODE_MANAGE_EXTERNAL_STORAGE){
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Manage External Storage permission granted!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Manage_External_Storage_permission_granted, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Manage External Storage permission denied!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Manage_External_Storage_permission_denied, Toast.LENGTH_SHORT).show();
             }
         }
         else if (requestCode == Constants.S_PERMISSION_REQUEST_CODE_WRITE_EXTERNAL_STORAGE){
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Write External Storage permission granted!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Write_External_Storage_permission_granted, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Write External Storage permission denied!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Write_External_Storage_permission_denied, Toast.LENGTH_SHORT).show();
             }
         }
         else if(requestCode == Constants.S_PERMISSION_REQUEST_CODE_READ_EXTERNAL_STORAGE){
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Read External Storage permission granted!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Read_External_Storage_permission_granted, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Read External Storage permission denied!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Read_External_Storage_permission_denied, Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void init(){
+        languageSpinner = findViewById(R.id.language_spinner);
         eMailAddressEditText = findViewById(R.id.e_mail_address_edit_text);
         eMailAddressInfoTextView = findViewById(R.id.e_mail_address_info_text_view);
         passwordEditText = findViewById(R.id.password_edit_text);
@@ -110,6 +153,11 @@ public class MainActivity extends AppCompatActivity {
 
         passwordOpenClose = false;
         passwordEditTextInputType = passwordEditText.getInputType();
+
+        String[] languages = {getString(R.string.Choose_app_language), "En", "Tr"};
+        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, languages);
+
+        languageSpinner.setAdapter(adapter);
     }
 
     private void initFirebase(){
@@ -133,14 +181,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setButtonsListener(){
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedLang = parent.getItemAtPosition(position).toString();
+
+                if(selectedLang.equals("En")){
+                    setLanguage("en");
+
+                    finish();
+                    Intent init = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(init);
+                }else if (selectedLang.equals("Tr")) {
+                    setLanguage("tr");
+
+                    finish();
+                    Intent init = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(init);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         rememberMeSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    Constants.S_REMEMBER_ME_OPTION = true;
-                }else{
-                    Constants.S_REMEMBER_ME_OPTION = false;
-                }
+                Constants.S_REMEMBER_ME_OPTION = isChecked;
             }
         });
 
@@ -148,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(eMailAddressEditText.getText().toString().isEmpty()){
-                    eMailAddressInfoTextView.setText("Empty!");
+                    eMailAddressInfoTextView.setText(R.string.Empty);
                 }else{
                     Pattern pattern;
                     Matcher matcher;
@@ -158,14 +226,14 @@ public class MainActivity extends AppCompatActivity {
                     matcher = pattern.matcher(cs);
 
                     if(!matcher.matches()){
-                        eMailAddressInfoTextView.setText("Invalid email");
+                        eMailAddressInfoTextView.setText(R.string.Invalid_email);
                     }else{
                         eMailAddressInfoTextView.setText("");
                     }
                 }
 
                 if(passwordEditText.getText().toString().isEmpty()){
-                    passwordInfoTextView.setText("Empty!");
+                    passwordInfoTextView.setText(R.string.Empty);
                 }else{
                     passwordInfoTextView.setText("");
                 }
@@ -174,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
                     auth.signInWithEmailAndPassword(eMailAddressEditText.getText().toString(), passwordEditText.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, R.string.Login_Successful, Toast.LENGTH_SHORT).show();
 
                             if(Constants.S_REMEMBER_ME_OPTION){
                                 FileOperations.setOptionValue(getApplicationContext(),"config.txt", "remember_me_option","true");
@@ -192,8 +260,8 @@ public class MainActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(MainActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
-                            eMailAddressInfoTextView.setText("Wrong entry!");
-                            passwordInfoTextView.setText("Wrong entry!");
+                            eMailAddressInfoTextView.setText(R.string.Wrong_entry);
+                            passwordInfoTextView.setText(R.string.Wrong_entry);
                         }
                     });
                 }

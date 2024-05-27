@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_marginTop="50dp"
-        android:text="Activities"
+        android:text="@string/Activities"
         android:textStyle="italic"
         android:textSize="50sp"
         android:gravity="center"

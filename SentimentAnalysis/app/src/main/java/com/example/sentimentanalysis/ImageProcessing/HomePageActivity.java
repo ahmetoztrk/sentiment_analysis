@@ -82,12 +82,12 @@ public class HomePageActivity extends AppCompatActivity {
 
         if (requestCode == Constants.S_PERMISSION_REQUEST_CODE_CAMERA) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Camera permission granted!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Camera_permission_granted, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,Constants.S_PERMISSION_REQUEST_CODE_CAMERA);
             } else {
-                Toast.makeText(this, "Camera permission denied!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Camera_permission_denied, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -104,13 +104,13 @@ public class HomePageActivity extends AppCompatActivity {
     private void initOpenCV(){
         if(OpenCVLoader.initLocal()){
             if(Constants.S_DEBUG_MODE){
-                Toast.makeText(this, "Application is starting...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Application_is_starting, Toast.LENGTH_SHORT).show();
             }
 
             mat = new Mat();
         }else{
             if(Constants.S_DEBUG_MODE){
-                Toast.makeText(this, "Application failed to start!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Application_failed_to_start, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -125,7 +125,8 @@ public class HomePageActivity extends AppCompatActivity {
         profileBtn = findViewById(R.id.profile_btn);
         currentMoodTextView = findViewById(R.id.current_mood_tv);
 
-        currentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
+        Constants.S_EMOTION = getString(R.string.No_Emotion);
+        currentMoodTextView.setText(Constants.S_EMOTION);
     }
 
     private void setButtonsListener(){
@@ -186,12 +187,23 @@ public class HomePageActivity extends AppCompatActivity {
         }
 
         if(requestCode==Constants.S_PERMISSION_REQUEST_CODE_CAMERA && data != null){
+            bitmap = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
+            emotionPhotoImageView.setImageBitmap(bitmap);
+
+            Utils.bitmapToMat(bitmap,mat);
+
+            mat = facialExpressionRecognition.recognizeImage(mat);
+            currentMoodTextView.setText(Constants.S_EMOTION);
+
+            Utils.matToBitmap(mat,bitmap);
+            emotionPhotoImageView.setImageBitmap(bitmap);
+
             AlertDialog.Builder alert = new AlertDialog.Builder(HomePageActivity.this);
             alert.setTitle(Constants.S_EMOTION)
-                    .setMessage("Is the emotion analyzed correct?")
+                    .setMessage(R.string.Is_the_emotion_analyzed_correct)
                     .setIcon(R.drawable.icon_full_heart)
                     .setCancelable(false)
-                    .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.Yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
@@ -200,7 +212,7 @@ public class HomePageActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     })
-                    .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.No, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             ActivityCompat.requestPermissions(HomePageActivity.this, new String[]{Manifest.permission.CAMERA}, Constants.S_PERMISSION_REQUEST_CODE_CAMERA);
@@ -210,19 +222,6 @@ public class HomePageActivity extends AppCompatActivity {
             AlertDialog dialog = alert.create();
             dialog.show();
             dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-
-
-
-            bitmap = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
-            emotionPhotoImageView.setImageBitmap(bitmap);
-
-            Utils.bitmapToMat(bitmap,mat);
-
-            mat = facialExpressionRecognition.recognizeImage(mat);
-            currentMoodTextView.setText(String.format("'%s'", Constants.S_EMOTION));
-
-            Utils.matToBitmap(mat,bitmap);
-            emotionPhotoImageView.setImageBitmap(bitmap);
         }
     }
 

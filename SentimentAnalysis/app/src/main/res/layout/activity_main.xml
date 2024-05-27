@@ -7,6 +7,29 @@
     android:orientation="vertical"
     android:background="@color/white">
 
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:text="@string/Languages"
+        android:textColor="#ACACAC"
+        android:textSize="17dp"
+        android:paddingLeft="17dp">
+    </TextView>
+
+    <Spinner
+        android:id="@+id/language_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:paddingLeft="10dp"
+        android:spinnerMode="dialog"
+        android:background="@drawable/custom_edge">
+    </Spinner>
+
     <ImageView
         android:layout_width="125dp"
         android:layout_height="125dp"
@@ -24,7 +47,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="E-mail Address"
+            android:text="@string/E_mail_Address"
             android:textColor="#ACACAC"
             android:textSize="17dp"
             android:paddingLeft="17dp">
@@ -52,7 +75,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:paddingLeft="15dp"
-        android:hint="example@email.com"
+        android:hint="@string/example_email_com"
         android:textSize="17dp"
         android:textColor="#ACACAC"
         android:background="@drawable/custom_edge"
@@ -70,7 +93,7 @@
             android:layout_width="150dp"
             android:layout_height="20dp"
             android:layout_marginLeft="50dp"
-            android:text="Password"
+            android:text="@string/Password"
             android:textColor="#ACACAC"
             android:textSize="17dp"
             android:paddingLeft="17dp">
@@ -127,7 +150,7 @@
         android:id="@+id/remember_me_switch_compat"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Remember me!"
+        android:text="@string/Remember_me"
         android:textSize="17dp"
         android:textColor="#ACACAC"
         android:layout_gravity="center"
@@ -141,7 +164,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginRight="125dp"
         android:layout_marginLeft="125dp"
-        android:text="Login">
+        android:text="@string/Login">
     </Button>
 
     <Button
@@ -150,6 +173,6 @@
         android:layout_height="50dp"
         android:layout_marginRight="125dp"
         android:layout_marginLeft="125dp"
-        android:text="Register">
+        android:text="@string/Register">
     </Button>
 </LinearLayout>
