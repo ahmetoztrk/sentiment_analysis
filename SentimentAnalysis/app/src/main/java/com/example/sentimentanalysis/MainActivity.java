@@ -3,8 +3,11 @@ package com.example.sentimentanalysis;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getPermission();
+
         initConfigs();
 
         setContentView(R.layout.activity_main);
-
-        getPermission();
 
         init();
 
@@ -97,11 +100,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getPermission() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            if (checkSelfPermission(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, Constants.S_PERMISSION_REQUEST_CODE_MANAGE_EXTERNAL_STORAGE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse(String.format("package:%s", getApplicationContext().getPackageName())));
+                startActivityForResult(intent, Constants.S_PERMISSION_REQUEST_CODE_MANAGE_EXTERNAL_STORAGE);
             }
-        }else {
+        } else {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constants.S_PERMISSION_REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
             }
@@ -116,25 +122,11 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == Constants.S_PERMISSION_REQUEST_CODE_MANAGE_EXTERNAL_STORAGE){
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, R.string.Manage_External_Storage_permission_granted, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, R.string.Manage_External_Storage_permission_denied, Toast.LENGTH_SHORT).show();
-            }
-        }
-        else if (requestCode == Constants.S_PERMISSION_REQUEST_CODE_WRITE_EXTERNAL_STORAGE){
+        if (requestCode == Constants.S_PERMISSION_REQUEST_CODE_WRITE_EXTERNAL_STORAGE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, R.string.Write_External_Storage_permission_granted, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, R.string.Write_External_Storage_permission_denied, Toast.LENGTH_SHORT).show();
-            }
-        }
-        else if(requestCode == Constants.S_PERMISSION_REQUEST_CODE_READ_EXTERNAL_STORAGE){
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, R.string.Read_External_Storage_permission_granted, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, R.string.Read_External_Storage_permission_denied, Toast.LENGTH_SHORT).show();
             }
         }
     }
