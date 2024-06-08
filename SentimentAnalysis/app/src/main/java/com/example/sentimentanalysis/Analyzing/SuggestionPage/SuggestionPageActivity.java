@@ -17,21 +17,32 @@ import com.example.sentimentanalysis.BuildConfig;
 import com.example.sentimentanalysis.Constants;
 import com.example.sentimentanalysis.Analyzing.LoadingDialog;
 import com.example.sentimentanalysis.R;
-import com.example.sentimentanalysis.FileOperations;
 import com.google.ai.client.generativeai.GenerativeModel;
 import com.google.ai.client.generativeai.java.GenerativeModelFutures;
 import com.google.ai.client.generativeai.type.Content;
 import com.google.ai.client.generativeai.type.GenerateContentResponse;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 
 public class SuggestionPageActivity extends AppCompatActivity {
+
+    FirebaseAuth auth;
+    FirebaseUser user;
+    DatabaseReference reference;
+    HashMap<String, Object> data;
 
     SuggestionPageAdapter suggestionPageAdapter;
     ArrayList<SuggestionPageModel> suggestionPageModelArrayList;
@@ -51,6 +62,8 @@ public class SuggestionPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_suggestion_page);
 
         init();
+
+        initFirebase();
 
         loadCards();
 
@@ -94,6 +107,12 @@ public class SuggestionPageActivity extends AppCompatActivity {
         }else if(position == 4){
             GetActivities();
         }
+    }
+
+    private void initFirebase(){
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference();
     }
 
     private void loadCards(){
@@ -323,16 +342,38 @@ public class SuggestionPageActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        for(int i=0; i<Constants.S_ADAPTER_SIZE; i++){
-            if(like[i]){
-                FileOperations.addFile(getApplicationContext(), activityText + ".txt", title[i] + "\n");
-                FileOperations.addFile(getApplicationContext(), activityText + ".txt", Constants.S_EMOTION + "\n");
+        for(int i=0; i<Constants.S_ADAPTER_SIZE; i++) {
+            if (like[i]) {
+                //FileOperations.addFile(getApplicationContext(), activityText + ".txt", title[i] + "\n");
+                //FileOperations.addFile(getApplicationContext(), activityText + ".txt", Constants.S_EMOTION + "\n");
 
                 String dateTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-                FileOperations.addFile(getApplicationContext(), activityText + ".txt", dateTime + "\n");
+                //FileOperations.addFile(getApplicationContext(), activityText + ".txt", dateTime + "\n");
 
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-                FileOperations.addFile(getApplicationContext(), activityText + ".txt", currentTime + "\n\n");
+                //FileOperations.addFile(getApplicationContext(), activityText + ".txt", currentTime + "\n\n");
+
+                
+                user = auth.getCurrentUser();
+
+                data = new HashMap<>();
+                data.put("suggestion", title[i]);
+                data.put("category", activityText);
+                data.put("emotion", Constants.S_EMOTION);
+                data.put("date", dateTime);
+                data.put("time", currentTime);
+
+                reference.child("users").child(user.getUid()).child("suggestions").child(title[i]).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
             }
         }
     }
