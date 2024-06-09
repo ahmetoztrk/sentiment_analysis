@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -115,22 +116,47 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="550dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="0dp"
         android:scrollbarThumbVertical="@drawable/custom_scroll_thumb"
         android:scrollbarTrackVertical="@drawable/custom_scroll_track"
         android:scrollbarSize="5dp">
-        
+
         <TextView
             android:id="@+id/previously_liked_text_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text=""
             android:textColor="#9C27B0"
             android:textSize="25dp">
         </TextView>
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/statistic_delete_btn"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@string/Delete"
+            android:layout_alignParentLeft="true"
+            android:gravity="center">
+        </Button>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/icon_delete"
+            android:layout_marginLeft="12dp"
+            android:layout_alignParentLeft="true">
+        </ImageView>
+    </RelativeLayout>
 </LinearLayout>

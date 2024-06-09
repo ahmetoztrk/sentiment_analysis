@@ -33,6 +33,7 @@
     <string name="Application_is_starting">"Uygulama başlıyor."</string>
     <string name="Application_failed_to_start">"Uygulama başlatılamadı!"</string>
     <string name="Is_the_emotion_analyzed_correct">"Duygu analizi doğru mu?"</string>
+    <string name="Would_you_like_to_take_a_picture">"Duygularınıza uygun öneriler alabilmek için bir resim gerekli. Fotoğraf çekmek ister misiniz?"</string>
 
     <!--Emotions-->
     <string name="No_Emotion">"Duygu yok"</string>
@@ -67,6 +68,7 @@
     <string name="Current_Mood">"Şu Anki Ruh Hali"</string>
     <string name="Make_the_suggestions_age_appropriate">"Önerileri yaşa uygun hale getir!"</string>
     <string name="Make_the_suggestions_gender_appropriate">"Önerileri cinsiyete uygun hale getir!"</string>
+    <string name="Make_the_suggestions_like_old_nice_suggestions">"Önerileri eski güzel öneriler gibi yap!"</string>
 
     <string name="music">"müzik"</string>
     <string name="series">"dizi"</string>
@@ -76,17 +78,21 @@
 
     <string name="query_description">"%1$s hakkında kısa bir açıklama ver."</string>
 
-    <string name="query_age_and_gender">"Ben %1$d yaşındayım ve cinsiyetim %2$s. Bana yaşıma ve cinsiyetime uygun %3$d rastgele %4$s %5$s ismi ver."</string>
-    <string name="query_age">"Ben %1$d yaşındayım. Bana yaşıma uygun %2$d rastgele %3$s %4$s ismi ver."</string>
-    <string name="query_gender">"Benim cinsiyetim %1$s. Bana cinsiyetime uygun %2$d rastgele %3$s %4$s ismi ver."</string>
-    <string name="query">"Bana %1$d rastgele %2$s %3$s ismi ver."</string>
+    <string name="query_age_and_gender_and_liked">"Ben %1$d yaşındayım ve cinsiyetim %2$s. Bana yaşıma ve cinsiyetime uygun %6$s benzeri %3$d %4$s %5$s ismi ver."</string>
+    <string name="query_age_and_gender">"Ben %1$d yaşındayım ve cinsiyetim %2$s. Bana yaşıma ve cinsiyetime uygun rastgele %3$d %4$s %5$s ismi ver."</string>
+    <string name="query_age_and_liked">"Ben %1$d yaşındayım. Bana yaşıma uygun %5$s benzeri %2$d %3$s %4$s ismi ver."</string>
+    <string name="query_age">"Ben %1$d yaşındayım. Bana yaşıma uygun rastgele %2$d %3$s %4$s ismi ver."</string>
+    <string name="query_gender_and_liked">"Benim cinsiyetim %1$s. Bana cinsiyetime uygun %5$s benzeri %2$d %3$s %4$s ismi ver."</string>
+    <string name="query_gender">"Benim cinsiyetim %1$s. Bana cinsiyetime uygun rastgele %2$d %3$s %4$s ismi ver."</string>
+    <string name="query_liked">"Bana %4$s benzeri %1$d %2$s %3$s ismi ver."</string>
+    <string name="query">"Bana rastgele %1$d %2$s %3$s ismi ver."</string>
 
     <!--HomePageActivity-->
     <string name="Welcome">"Hoş geldin"</string>
     <string name="Username">"Kullanıcı adı"</string>
     <string name="Camera">"Kamera"</string>
     <string name="Statistics">"İstatistikler"</string>
-    <string name="GUI_Test">"GUI Test"</string>
+    <string name="Suggestions">"Öneriler"</string>
     <string name="Profile">"Profil"</string>
     <string name="Exit">"Çıkış yap"</string>
 
@@ -115,4 +121,11 @@
     <!--custom_dialog_1, custom_dialog_2-->
     <string name="Your_emotional_state_is">"Duygu durumunuz"</string>
     <string name="Recommendations_are_being_created">"Öneriler oluşturuluyor."</string>
+
+    <!--StatisticsPageActivity-->
+    <string name="suggestion_x">"Öneri: "</string>
+    <string name="category_x">"Kategori: "</string>
+    <string name="emotion_x">"Duygu: "</string>
+    <string name="date_x">"Tarih: "</string>
+    <string name="time_x">"Zaman: "</string>
 </resources>

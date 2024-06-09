@@ -88,10 +88,10 @@
         android:layout_marginTop="5dp">
 
         <Button
-            android:id="@+id/gui_test_btn"
+            android:id="@+id/suggestion_btn"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="@string/GUI_Test"
+            android:text="@string/Suggestions"
             android:layout_marginLeft="50dp"
             android:layout_alignParentLeft="true"
             android:gravity="center">

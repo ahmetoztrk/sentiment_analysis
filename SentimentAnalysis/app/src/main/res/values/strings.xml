@@ -32,6 +32,7 @@
     <string name="Application_is_starting">"Application is starting."</string>
     <string name="Application_failed_to_start">"Application failed to start!"</string>
     <string name="Is_the_emotion_analyzed_correct">"Is the emotion analyzed correct?"</string>
+    <string name="Would_you_like_to_take_a_picture">"A picture is required to get suggestions that match your feelings. Would you like to take a picture?"</string>
 
     <!--Emotions-->
     <string name="No_Emotion">"No Emotion"</string>
@@ -66,6 +67,7 @@
     <string name="Current_Mood">"Current Mood"</string>
     <string name="Make_the_suggestions_age_appropriate">"Make the suggestions age appropriate!"</string>
     <string name="Make_the_suggestions_gender_appropriate">"Make the suggestions gender appropriate!"</string>
+    <string name="Make_the_suggestions_like_old_nice_suggestions">"Make the suggestions like old nice suggestions!"</string>
 
     <string name="music">"music"</string>
     <string name="series">"series"</string>
@@ -75,17 +77,21 @@
 
     <string name="query_description">"Give a brief description of %1$s."</string>
 
-    <string name="query_age_and_gender">"I am %1$d years old and %2$s. Give me %3$d random %4$s %5$s names suitable for my age and gender."</string>
-    <string name="query_age">"I am %1$d years old. Give me %2$d random %3$s %4$s names suitable for my age."</string>
-    <string name="query_gender">"I am %1$s. Give me %2$d random %3$s %4$s names suitable for my gender."</string>
-    <string name="query">"Give me %1$d random %2$s %3$s names."</string>
+    <string name="query_age_and_gender_and_liked">"I am an %1$d year old %2$s. Can you recommend me %3$d %4$s %5$s that are suitable for my age and gender, similar to %6$s?"</string>
+    <string name="query_age_and_gender">"I am an %1$d year old %2$s. Can you recommend me %3$d random %4$s %5$s that are suitable for my age and gender?"</string>
+    <string name="query_age_and_liked">"I am %1$d years old. Can you recommend me %2$d %3$s %4$s that are suitable for my age, similar to %5$s?"</string>
+    <string name="query_age">"I am %1$d years old. Can you recommend me %2$d random %3$s %4$s that are suitable for my age?"</string>
+    <string name="query_gender_and_liked">"I am a %1$s. Can you recommend me %2$d %3$s %4$s that are suitable for my gender, similar to %5$s?"</string>
+    <string name="query_gender">"I am a %1$s. Can you recommend me %2$d random %3$s %4$s that are suitable for my gender?"</string>
+    <string name="query_liked">"Can you recommend me %1$d %2$s %3$s that are similar to %4$s?"</string>
+    <string name="query">"Can you recommend me %1$d random %2$s %3$s?"</string>
 
     <!--HomePageActivity-->
     <string name="Welcome">"Welcome"</string>
     <string name="Username">"Username"</string>
     <string name="Camera">"Camera"</string>
     <string name="Statistics">"Statistics"</string>
-    <string name="GUI_Test">"GUI Test"</string>
+    <string name="Suggestions">"Suggestions"</string>
     <string name="Profile">"Profile"</string>
     <string name="Exit">"Exit"</string>
 
@@ -114,4 +120,11 @@
     <!--custom_dialog_1, custom_dialog_2-->
     <string name="Your_emotional_state_is">"Your emotional state is"</string>
     <string name="Recommendations_are_being_created">"Recommendations are being created."</string>
+
+    <!--StatisticsPageActivity-->
+    <string name="suggestion_x">"Suggestion: "</string>
+    <string name="category_x">"Category: "</string>
+    <string name="emotion_x">"Emotion: "</string>
+    <string name="date_x">"Date: "</string>
+    <string name="time_x">"Time: "</string>
 </resources>
