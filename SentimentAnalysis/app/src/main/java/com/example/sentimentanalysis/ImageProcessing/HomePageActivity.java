@@ -54,7 +54,7 @@ public class HomePageActivity extends AppCompatActivity {
     FacialExpressionRecognition facialExpressionRecognition;
 
     ImageView emotionPhotoImageView;
-    Button camBtn, statBtn, guiTestBtn, exitBtn, profileBtn;
+    Button camBtn, statBtn, sugBtn, exitBtn, profileBtn;
     TextView welcomeTextView, currentMoodTextView;
 
     Mat mat = null;
@@ -120,7 +120,7 @@ public class HomePageActivity extends AppCompatActivity {
         emotionPhotoImageView = findViewById(R.id.emotion_photoimage_view);
         camBtn = findViewById(R.id.camera_btn);
         statBtn = findViewById(R.id.statistics_btn);
-        guiTestBtn = findViewById(R.id.gui_test_btn);
+        sugBtn = findViewById(R.id.suggestion_btn);
         exitBtn = findViewById(R.id.exit_btn);
         profileBtn = findViewById(R.id.profile_btn);
         currentMoodTextView = findViewById(R.id.current_mood_tv);
@@ -145,11 +145,35 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        guiTestBtn.setOnClickListener(new View.OnClickListener() {
+        sugBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomePageActivity.this, FilterPageActivity.class);
-                startActivity(intent);
+                if(!Constants.S_EMOTION.equals(getString(R.string.No_Emotion))){
+                    Intent intent = new Intent(HomePageActivity.this, FilterPageActivity.class);
+                    startActivity(intent);
+                }else{
+                    AlertDialog.Builder alert = new AlertDialog.Builder(HomePageActivity.this);
+                    alert.setTitle(R.string.Suggestions)
+                            .setMessage(R.string.Would_you_like_to_take_a_picture)
+                            .setIcon(R.drawable.icon_series)
+                            .setCancelable(false)
+                            .setNegativeButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    ActivityCompat.requestPermissions(HomePageActivity.this, new String[]{Manifest.permission.CAMERA}, Constants.S_PERMISSION_REQUEST_CODE_CAMERA);
+                                }
+                            })
+                            .setPositiveButton(R.string.No, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+
+                    AlertDialog dialog = alert.create();
+                    dialog.show();
+                    dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                }
             }
         });
 

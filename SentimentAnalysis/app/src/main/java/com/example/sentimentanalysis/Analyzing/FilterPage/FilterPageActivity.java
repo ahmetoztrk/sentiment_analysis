@@ -20,7 +20,7 @@ public class FilterPageActivity extends AppCompatActivity {
 
     ViewPager filterPageViewPager;
     TextView filterPageCurrentMoodTextView;
-    CheckBox suggestionAgeCheckBox, suggestionGenderCheckBox;
+    CheckBox suggestionAgeCheckBox, suggestionGenderCheckBox, suggestionLikeOldNiceSuggestionsCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class FilterPageActivity extends AppCompatActivity {
         filterPageCurrentMoodTextView = findViewById(R.id.current_mood_tv);
         suggestionAgeCheckBox = findViewById(R.id.suggestion_age_check_box);
         suggestionGenderCheckBox = findViewById(R.id.suggestion_gender_check_box);
+        suggestionLikeOldNiceSuggestionsCheckBox = findViewById(R.id.suggestion_like_old_nice_suggestions_check_box);
 
         filterPageCurrentMoodTextView.setText(Constants.S_EMOTION);
     }
@@ -90,6 +91,13 @@ public class FilterPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Constants.S_GENDER_OPTION = suggestionGenderCheckBox.isChecked();
+            }
+        });
+
+        suggestionLikeOldNiceSuggestionsCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Constants.S_LIKE_OLD_NICE_SUGGESTIONS_OPTION = suggestionLikeOldNiceSuggestionsCheckBox.isChecked();
             }
         });
     }

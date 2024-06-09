@@ -28,8 +28,12 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,7 +58,10 @@ public class SuggestionPageActivity extends AppCompatActivity {
     ImageButton likeButton1, likeButton2, likeButton3, likeButton4, likeButton5;
 
     String activityText;
+    String categoryName;
+    String categoryText;
     boolean[] like;
+    int iconID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +120,33 @@ public class SuggestionPageActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference();
+
+        Intent intent = getIntent();
+        int position = intent.getIntExtra("position", 0);
+
+        OnDataFetchedCallback callback = new OnDataFetchedCallback() {
+            @Override
+            public void onDataFetched(String previouslyLikedSuggestions) {
+                GetSuggestion(previouslyLikedSuggestions);
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+                GetSuggestion("");
+            }
+        };
+
+        if (position == 0) {
+            FirebaseAPIGetData(user.getUid(), "Musics", callback);
+        } else if (position == 1) {
+            FirebaseAPIGetData(user.getUid(), "Series", callback);
+        } else if (position == 2) {
+            FirebaseAPIGetData(user.getUid(), "Movies", callback);
+        } else if (position == 3) {
+            FirebaseAPIGetData(user.getUid(), "Books", callback);
+        } else if (position == 4) {
+            FirebaseAPIGetData(user.getUid(), "Activities", callback);
+        }
     }
 
     private void loadCards(){
@@ -122,7 +156,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
             suggestionPageModelArrayList.add(new SuggestionPageModel(
                     title[i],
                     description[i],
-                    getIcon()));
+                    iconID));
         }
 
         suggestionPageAdapter = new SuggestionPageAdapter(this, suggestionPageModelArrayList);
@@ -130,25 +164,6 @@ public class SuggestionPageActivity extends AppCompatActivity {
         suggestionPageViewPager.setAdapter(suggestionPageAdapter);
 
         suggestionPageViewPager.setPadding(100,0,100,0);
-    }
-
-    private int getIcon(){
-        Intent intent = getIntent();
-        int position = intent.getIntExtra("position",0);
-
-        if(position == 0){
-            return R.drawable.icon_musics;
-        }else if(position == 1){
-            return R.drawable.icon_series;
-        }else if(position == 2){
-            return R.drawable.icon_movies;
-        }else if(position == 3){
-            return R.drawable.icon_books;
-        }else if(position == 4){
-            return R.drawable.icon_activities;
-        }else{
-            return R.drawable.icon_profile_1;
-        }
     }
 
     private void setButtonsListener(){
@@ -221,51 +236,58 @@ public class SuggestionPageActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void GetMusics(){
         activityText = getString(R.string.Musics);
+        categoryText = "Musics";
+        categoryName = getString(R.string.music);
         titleTextView.setText(activityText);
+        iconID = R.drawable.icon_musics;
 
         suggestionLoadingDialog.StartLoadingDialog();
-
-        GetSuggestion(getString(R.string.music));
     }
 
     @SuppressLint("SetTextI18n")
     private void GetSeries(){
         activityText = getString(R.string.Series);
+        categoryText = "Series";
+        categoryName = getString(R.string.series);
         titleTextView.setText(activityText);
+        iconID = R.drawable.icon_series;
 
         suggestionLoadingDialog.StartLoadingDialog();
-
-        GetSuggestion(getString(R.string.series));
     }
 
     @SuppressLint("SetTextI18n")
     private void GetMovies(){
         activityText = getString(R.string.Movies);
+        categoryText = "Movies";
+        categoryName = getString(R.string.movie);
         titleTextView.setText(activityText);
+        iconID = R.drawable.icon_movies;
 
         suggestionLoadingDialog.StartLoadingDialog();
-
-        GetSuggestion(getString(R.string.movie));
     }
 
     @SuppressLint("SetTextI18n")
     private void GetBooks(){
         activityText = getString(R.string.Books);
+        categoryText = "Books";
+        categoryName = getString(R.string.book);
+        iconID = R.drawable.icon_books;
+
         titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
-
-        GetSuggestion(getString(R.string.book));
     }
 
     @SuppressLint("SetTextI18n")
     private void GetActivities(){
         activityText = getString(R.string.Activities);
+        categoryText = "Activities";
+        categoryName = getString(R.string.activity);
+        iconID = R.drawable.icon_activities;
+
         titleTextView.setText(activityText);
 
         suggestionLoadingDialog.StartLoadingDialog();
-
-        GetSuggestion(getString(R.string.activity));
     }
 
     private void GeminiAPIGetTitle(String query){
@@ -344,26 +366,20 @@ public class SuggestionPageActivity extends AppCompatActivity {
 
         for(int i=0; i<Constants.S_ADAPTER_SIZE; i++) {
             if (like[i]) {
-                //FileOperations.addFile(getApplicationContext(), activityText + ".txt", title[i] + "\n");
-                //FileOperations.addFile(getApplicationContext(), activityText + ".txt", Constants.S_EMOTION + "\n");
-
                 String dateTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-                //FileOperations.addFile(getApplicationContext(), activityText + ".txt", dateTime + "\n");
-
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-                //FileOperations.addFile(getApplicationContext(), activityText + ".txt", currentTime + "\n\n");
 
-                
                 user = auth.getCurrentUser();
 
                 data = new HashMap<>();
                 data.put("suggestion", title[i]);
-                data.put("category", activityText);
+                data.put("category", categoryText);
                 data.put("emotion", Constants.S_EMOTION);
                 data.put("date", dateTime);
                 data.put("time", currentTime);
 
-                reference.child("users").child(user.getUid()).child("suggestions").child(title[i]).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                reference = FirebaseDatabase.getInstance().getReference();
+                reference.child("users").child(user.getUid()).child("suggestions").child(categoryText).child(title[i]).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
 
@@ -378,8 +394,46 @@ public class SuggestionPageActivity extends AppCompatActivity {
         }
     }
 
-    private void GetSuggestion(String categoryName){
-        if(Constants.S_AGE_OPTION && Constants.S_GENDER_OPTION){
+    private void GetSuggestion(String previouslyLikedSuggestions){
+        if(Constants.S_AGE_OPTION && Constants.S_GENDER_OPTION && Constants.S_LIKE_OLD_NICE_SUGGESTIONS_OPTION){
+            if(dataExists){
+                GeminiAPIGetTitle(getString(R.string.query_age_and_gender_and_liked,
+                        Constants.S_AGE,
+                        Constants.S_GENDER,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName,
+                        previouslyLikedSuggestions));
+
+                if(!Constants.S_DEBUG_MODE) {
+                    Toast.makeText(SuggestionPageActivity.this,
+                            getString(R.string.query_age_and_gender_and_liked,
+                                    Constants.S_AGE,
+                                    Constants.S_GENDER,
+                                    Constants.S_ADAPTER_SIZE,
+                                    Constants.S_EMOTION,
+                                    categoryName,
+                                    previouslyLikedSuggestions), Toast.LENGTH_LONG).show();
+                }
+            }else{
+                GeminiAPIGetTitle(getString(R.string.query_age_and_gender,
+                        Constants.S_AGE,
+                        Constants.S_GENDER,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName));
+
+                if(!Constants.S_DEBUG_MODE) {
+                    Toast.makeText(SuggestionPageActivity.this,
+                            getString(R.string.query_age_and_gender,
+                                    Constants.S_AGE,
+                                    Constants.S_GENDER,
+                                    Constants.S_ADAPTER_SIZE,
+                                    Constants.S_EMOTION,
+                                    categoryName), Toast.LENGTH_LONG).show();
+                }
+            }
+        }else if(Constants.S_AGE_OPTION && Constants.S_GENDER_OPTION){
             GeminiAPIGetTitle(getString(R.string.query_age_and_gender,
                     Constants.S_AGE,
                     Constants.S_GENDER,
@@ -387,13 +441,48 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     Constants.S_EMOTION,
                     categoryName));
 
-            if(Constants.S_DEBUG_MODE) {
-                Toast.makeText(SuggestionPageActivity.this, getString(R.string.query_age_and_gender,
+            if(!Constants.S_DEBUG_MODE) {
+                Toast.makeText(SuggestionPageActivity.this,
+                        getString(R.string.query_age_and_gender,
+                                Constants.S_AGE,
+                                Constants.S_GENDER,
+                                Constants.S_ADAPTER_SIZE,
+                                Constants.S_EMOTION,
+                                categoryName), Toast.LENGTH_LONG).show();
+            }
+        }else if(Constants.S_AGE_OPTION && Constants.S_LIKE_OLD_NICE_SUGGESTIONS_OPTION){
+            if(dataExists){
+                GeminiAPIGetTitle(getString(R.string.query_age_and_liked,
                         Constants.S_AGE,
-                        Constants.S_GENDER,
                         Constants.S_ADAPTER_SIZE,
                         Constants.S_EMOTION,
-                        categoryName), Toast.LENGTH_LONG).show();
+                        categoryName,
+                        previouslyLikedSuggestions));
+
+                if(!Constants.S_DEBUG_MODE) {
+                    Toast.makeText(SuggestionPageActivity.this,
+                            getString(R.string.query_age_and_liked,
+                                    Constants.S_AGE,
+                                    Constants.S_ADAPTER_SIZE,
+                                    Constants.S_EMOTION,
+                                    categoryName,
+                                    previouslyLikedSuggestions), Toast.LENGTH_LONG).show();
+                }
+            }else{
+                GeminiAPIGetTitle(getString(R.string.query_age,
+                        Constants.S_AGE,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName));
+
+                if(!Constants.S_DEBUG_MODE) {
+                    Toast.makeText(SuggestionPageActivity.this,
+                            getString(R.string.query_age,
+                                    Constants.S_AGE,
+                                    Constants.S_ADAPTER_SIZE,
+                                    Constants.S_EMOTION,
+                                    categoryName), Toast.LENGTH_LONG).show();
+                }
             }
         }else if(Constants.S_AGE_OPTION){
             GeminiAPIGetTitle(getString(R.string.query_age,
@@ -402,12 +491,47 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     Constants.S_EMOTION,
                     categoryName));
 
-            if(Constants.S_DEBUG_MODE) {
-                Toast.makeText(SuggestionPageActivity.this, getString(R.string.query_age,
-                        Constants.S_AGE,
+            if(!Constants.S_DEBUG_MODE) {
+                Toast.makeText(SuggestionPageActivity.this,
+                        getString(R.string.query_age,
+                                Constants.S_AGE,
+                                Constants.S_ADAPTER_SIZE,
+                                Constants.S_EMOTION,
+                                categoryName), Toast.LENGTH_LONG).show();
+            }
+        }else if(Constants.S_GENDER_OPTION && Constants.S_LIKE_OLD_NICE_SUGGESTIONS_OPTION){
+            if(dataExists) {
+                GeminiAPIGetTitle(getString(R.string.query_gender_and_liked,
+                        Constants.S_GENDER,
                         Constants.S_ADAPTER_SIZE,
                         Constants.S_EMOTION,
-                        categoryName), Toast.LENGTH_LONG).show();
+                        categoryName,
+                        previouslyLikedSuggestions));
+
+                if (!Constants.S_DEBUG_MODE) {
+                    Toast.makeText(SuggestionPageActivity.this,
+                            getString(R.string.query_gender_and_liked,
+                                    Constants.S_GENDER,
+                                    Constants.S_ADAPTER_SIZE,
+                                    Constants.S_EMOTION,
+                                    categoryName,
+                                    previouslyLikedSuggestions), Toast.LENGTH_LONG).show();
+                }
+            }else{
+                GeminiAPIGetTitle(getString(R.string.query_gender,
+                        Constants.S_GENDER,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName));
+
+                if(!Constants.S_DEBUG_MODE) {
+                    Toast.makeText(SuggestionPageActivity.this,
+                            getString(R.string.query_gender,
+                                    Constants.S_GENDER,
+                                    Constants.S_ADAPTER_SIZE,
+                                    Constants.S_EMOTION,
+                                    categoryName), Toast.LENGTH_LONG).show();
+                }
             }
         }else if(Constants.S_GENDER_OPTION){
             GeminiAPIGetTitle(getString(R.string.query_gender,
@@ -416,25 +540,106 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     Constants.S_EMOTION,
                     categoryName));
 
-            if(Constants.S_DEBUG_MODE) {
-                Toast.makeText(SuggestionPageActivity.this, getString(R.string.query_gender,
-                        Constants.S_GENDER,
+            if(!Constants.S_DEBUG_MODE) {
+                Toast.makeText(SuggestionPageActivity.this,
+                        getString(R.string.query_gender,
+                                Constants.S_GENDER,
+                                Constants.S_ADAPTER_SIZE,
+                                Constants.S_EMOTION,
+                                categoryName), Toast.LENGTH_LONG).show();
+            }
+        }else if(Constants.S_LIKE_OLD_NICE_SUGGESTIONS_OPTION){
+            if(dataExists) {
+                GeminiAPIGetTitle(getString(R.string.query_liked,
                         Constants.S_ADAPTER_SIZE,
                         Constants.S_EMOTION,
-                        categoryName), Toast.LENGTH_LONG).show();
+                        categoryName,
+                        previouslyLikedSuggestions));
+
+                if (!Constants.S_DEBUG_MODE) {
+                    Toast.makeText(SuggestionPageActivity.this,
+                            getString(R.string.query_liked,
+                                    Constants.S_ADAPTER_SIZE,
+                                    Constants.S_EMOTION,
+                                    categoryName,
+                                    previouslyLikedSuggestions), Toast.LENGTH_LONG).show();
+                }
+            }else{
+                GeminiAPIGetTitle(getString(R.string.query,
+                        Constants.S_ADAPTER_SIZE,
+                        Constants.S_EMOTION,
+                        categoryName));
+
+                if(!Constants.S_DEBUG_MODE) {
+                    Toast.makeText(SuggestionPageActivity.this,
+                            getString(R.string.query,
+                                    Constants.S_ADAPTER_SIZE,
+                                    Constants.S_EMOTION,
+                                    categoryName), Toast.LENGTH_LONG).show();
+                }
             }
-        }else{
+        }else {
             GeminiAPIGetTitle(getString(R.string.query,
                     Constants.S_ADAPTER_SIZE,
                     Constants.S_EMOTION,
                     categoryName));
 
-            if(Constants.S_DEBUG_MODE) {
-                Toast.makeText(SuggestionPageActivity.this, getString(R.string.query,
-                        Constants.S_ADAPTER_SIZE,
-                        Constants.S_EMOTION,
-                        categoryName), Toast.LENGTH_LONG).show();
+            if(!Constants.S_DEBUG_MODE) {
+                Toast.makeText(SuggestionPageActivity.this,
+                        getString(R.string.query,
+                                Constants.S_ADAPTER_SIZE,
+                                Constants.S_EMOTION,
+                                categoryName), Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private void FirebaseAPIGetData(String uid, String category, OnDataFetchedCallback callback) {
+        reference = FirebaseDatabase.getInstance().getReference("users").child(uid).child("suggestions").child(categoryText);
+        GetPreviouslyLiked(category, new StringBuilder(), callback);
+    }
+    boolean dataExists = false;
+
+    private void GetPreviouslyLiked(String activity, StringBuilder previouslyLikedText, OnDataFetchedCallback callback) {
+        Query query = reference.orderByChild("category").equalTo(activity);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    dataExists = true;
+
+                    for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
+                        createSuggestionsText(previouslyLikedText, suggestionSnapshot.child("suggestion").getValue(String.class));
+                    }
+
+                    if (previouslyLikedText.length() > 2) {
+                        previouslyLikedText.delete(previouslyLikedText.length() - 2, previouslyLikedText.length());
+                    }
+
+                    callback.onDataFetched(previouslyLikedText.toString());
+                } else {
+                    dataExists = false;
+
+                    callback.onDataFetched("");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(SuggestionPageActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                callback.onDataFetched(""); // Error occurred, send empty string
+            }
+        });
+    }
+
+    private void createSuggestionsText(StringBuilder previouslyLikedText, String suggestion) {
+        if (suggestion != null && !suggestion.isEmpty()) {
+            previouslyLikedText.append(suggestion).append(", ");
+        }
+    }
+
+    interface OnDataFetchedCallback {
+        void onDataFetched(String previouslyLikedSuggestions);
+        void onDataNotAvailable();
     }
 }

@@ -7,6 +7,7 @@ public class Constants {
     public static boolean S_REMEMBER_ME_OPTION = false;
     public static boolean S_AGE_OPTION = false;
     public static boolean S_GENDER_OPTION = false;
+    public static boolean S_LIKE_OLD_NICE_SUGGESTIONS_OPTION = false;
     public static int S_AGE = 0;
     public static String S_GENDER = "other";
     public static final int S_PERMISSION_REQUEST_CODE_CAMERA = 101;
