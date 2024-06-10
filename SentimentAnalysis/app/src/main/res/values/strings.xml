@@ -77,14 +77,14 @@
 
     <string name="query_description">"Give a brief description of %1$s."</string>
 
-    <string name="query_age_and_gender_and_liked">"I am an %1$d year old %2$s. Can you recommend me %3$d %4$s %5$s that are suitable for my age and gender, similar to %6$s?"</string>
-    <string name="query_age_and_gender">"I am an %1$d year old %2$s. Can you recommend me %3$d random %4$s %5$s that are suitable for my age and gender?"</string>
-    <string name="query_age_and_liked">"I am %1$d years old. Can you recommend me %2$d %3$s %4$s that are suitable for my age, similar to %5$s?"</string>
-    <string name="query_age">"I am %1$d years old. Can you recommend me %2$d random %3$s %4$s that are suitable for my age?"</string>
-    <string name="query_gender_and_liked">"I am a %1$s. Can you recommend me %2$d %3$s %4$s that are suitable for my gender, similar to %5$s?"</string>
-    <string name="query_gender">"I am a %1$s. Can you recommend me %2$d random %3$s %4$s that are suitable for my gender?"</string>
-    <string name="query_liked">"Can you recommend me %1$d %2$s %3$s that are similar to %4$s?"</string>
-    <string name="query">"Can you recommend me %1$d random %2$s %3$s?"</string>
+    <string name="query_age_and_gender_and_liked">"I am %1$d years old and my gender is %2$s. Give me %3$d %4$s %5$s names similar to %6$s that are appropriate for my age and gender."</string>
+    <string name="query_age_and_gender">"I am %1$d years old and my gender is %2$s. Give me %3$d random %4$s %5$s names suitable for my age and gender."</string>
+    <string name="query_age_and_liked">"I am %1$d years old. Give me %2$d %3$s %4$s names similar to %5$s that are appropriate for my age."</string>
+    <string name="query_age">"I am %1$d years old. Give me %2$d random %3$s %4$s names suitable for my age."</string>
+    <string name="query_gender_and_liked">"My gender is %1$s. Give me %2$d %3$s %4$s names similar to %5$s that match my gender."</string>
+    <string name="query_gender">"My gender is %1$s. Give me %2$d random %3$s %4$s names based on my gender."</string>
+    <string name="query_liked">"Give me %1$d %2$s %3$s names similar to %4$s."</string>
+    <string name="query">"Give me %1$d random %2$s %3$s names."</string>
 
     <!--HomePageActivity-->
     <string name="Welcome">"Welcome"</string>
@@ -102,6 +102,7 @@
     <string name="example_email_com">"example@email.com"</string>
     <string name="Password">"Password"</string>
     <string name="Remember_me">"Remember me!"</string>
+    <string name="Debug_Mode">"Debug Mode"</string>
     <string name="Login">"Login"</string>
     <string name="Register">"Register"</string>
 
