@@ -405,7 +405,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                         categoryName,
                         previouslyLikedSuggestions));
 
-                if(!Constants.S_DEBUG_MODE) {
+                if(Constants.S_DEBUG_MODE) {
                     Toast.makeText(SuggestionPageActivity.this,
                             getString(R.string.query_age_and_gender_and_liked,
                                     Constants.S_AGE,
@@ -423,7 +423,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                         Constants.S_EMOTION,
                         categoryName));
 
-                if(!Constants.S_DEBUG_MODE) {
+                if(Constants.S_DEBUG_MODE) {
                     Toast.makeText(SuggestionPageActivity.this,
                             getString(R.string.query_age_and_gender,
                                     Constants.S_AGE,
@@ -441,7 +441,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     Constants.S_EMOTION,
                     categoryName));
 
-            if(!Constants.S_DEBUG_MODE) {
+            if(Constants.S_DEBUG_MODE) {
                 Toast.makeText(SuggestionPageActivity.this,
                         getString(R.string.query_age_and_gender,
                                 Constants.S_AGE,
@@ -459,7 +459,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                         categoryName,
                         previouslyLikedSuggestions));
 
-                if(!Constants.S_DEBUG_MODE) {
+                if(Constants.S_DEBUG_MODE) {
                     Toast.makeText(SuggestionPageActivity.this,
                             getString(R.string.query_age_and_liked,
                                     Constants.S_AGE,
@@ -475,7 +475,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                         Constants.S_EMOTION,
                         categoryName));
 
-                if(!Constants.S_DEBUG_MODE) {
+                if(Constants.S_DEBUG_MODE) {
                     Toast.makeText(SuggestionPageActivity.this,
                             getString(R.string.query_age,
                                     Constants.S_AGE,
@@ -491,7 +491,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     Constants.S_EMOTION,
                     categoryName));
 
-            if(!Constants.S_DEBUG_MODE) {
+            if(Constants.S_DEBUG_MODE) {
                 Toast.makeText(SuggestionPageActivity.this,
                         getString(R.string.query_age,
                                 Constants.S_AGE,
@@ -508,7 +508,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                         categoryName,
                         previouslyLikedSuggestions));
 
-                if (!Constants.S_DEBUG_MODE) {
+                if (Constants.S_DEBUG_MODE) {
                     Toast.makeText(SuggestionPageActivity.this,
                             getString(R.string.query_gender_and_liked,
                                     Constants.S_GENDER,
@@ -524,7 +524,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                         Constants.S_EMOTION,
                         categoryName));
 
-                if(!Constants.S_DEBUG_MODE) {
+                if(Constants.S_DEBUG_MODE) {
                     Toast.makeText(SuggestionPageActivity.this,
                             getString(R.string.query_gender,
                                     Constants.S_GENDER,
@@ -540,7 +540,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     Constants.S_EMOTION,
                     categoryName));
 
-            if(!Constants.S_DEBUG_MODE) {
+            if(Constants.S_DEBUG_MODE) {
                 Toast.makeText(SuggestionPageActivity.this,
                         getString(R.string.query_gender,
                                 Constants.S_GENDER,
@@ -556,7 +556,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                         categoryName,
                         previouslyLikedSuggestions));
 
-                if (!Constants.S_DEBUG_MODE) {
+                if (Constants.S_DEBUG_MODE) {
                     Toast.makeText(SuggestionPageActivity.this,
                             getString(R.string.query_liked,
                                     Constants.S_ADAPTER_SIZE,
@@ -570,7 +570,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                         Constants.S_EMOTION,
                         categoryName));
 
-                if(!Constants.S_DEBUG_MODE) {
+                if(Constants.S_DEBUG_MODE) {
                     Toast.makeText(SuggestionPageActivity.this,
                             getString(R.string.query,
                                     Constants.S_ADAPTER_SIZE,
@@ -584,7 +584,7 @@ public class SuggestionPageActivity extends AppCompatActivity {
                     Constants.S_EMOTION,
                     categoryName));
 
-            if(!Constants.S_DEBUG_MODE) {
+            if(Constants.S_DEBUG_MODE) {
                 Toast.makeText(SuggestionPageActivity.this,
                         getString(R.string.query,
                                 Constants.S_ADAPTER_SIZE,

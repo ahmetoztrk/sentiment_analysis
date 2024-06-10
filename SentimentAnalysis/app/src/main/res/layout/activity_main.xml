@@ -157,6 +157,17 @@
         tools:ignore="UseSwitchCompatOrMaterialXml">
     </Switch>
 
+    <Switch
+        android:id="@+id/debug_mode_switch_compat"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/Debug_Mode"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:layout_gravity="center"
+        tools:ignore="UseSwitchCompatOrMaterialXml">
+    </Switch>
+
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"

@@ -103,6 +103,7 @@
     <string name="example_email_com">"örnek@email.com"</string>
     <string name="Password">"Şifre"</string>
     <string name="Remember_me">"Beni Hatırla!"</string>
+    <string name="Debug_Mode">"Hata Ayıklama Modu"</string>
     <string name="Login">"Giriş yap"</string>
     <string name="Register">"Kayıt ol"</string>
 

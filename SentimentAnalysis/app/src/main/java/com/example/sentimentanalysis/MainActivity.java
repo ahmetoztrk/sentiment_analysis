@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner languageSpinner;
     EditText eMailAddressEditText, passwordEditText;
     TextView eMailAddressInfoTextView, passwordInfoTextView;
-    Switch rememberMeSwitchCompat;
+    Switch rememberMeSwitchCompat, debugModeSwitchCompat;
     Button loginBtn, registerBtn;
     ImageButton passwordOpenCloseBtn;
     boolean passwordOpenClose;
@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         passwordInfoTextView = findViewById(R.id.password_info_text_view);
 
         rememberMeSwitchCompat = findViewById(R.id.remember_me_switch_compat);
+        debugModeSwitchCompat = findViewById(R.id.debug_mode_switch_compat);
         loginBtn = findViewById(R.id.login_btn);
         registerBtn = findViewById(R.id.register_btn);
         passwordOpenCloseBtn = findViewById(R.id.password_open_close_btn);
@@ -203,7 +204,12 @@ public class MainActivity extends AppCompatActivity {
                 Constants.S_REMEMBER_ME_OPTION = isChecked;
             }
         });
-
+        debugModeSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                Constants.S_DEBUG_MODE = isChecked;
+            }
+        });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -240,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
                                 FileOperations.setOptionValue(getApplicationContext(),"config.txt", "remember_me_option","true");
                                 FileOperations.setOptionValue(getApplicationContext(),"config.txt","password",passwordEditText.getText().toString());
                             }else{
-                                FileOperations.setOptionValue(getApplicationContext(),"config.txt", "remember_me_option","false");
+                                FileOperations.setOptionValue(getApplicationContext(),"config.txt","remember_me_option","false");
                                 FileOperations.setOptionValue(getApplicationContext(),"config.txt","password","");
                             }
 
