@@ -1,18 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="150dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:text="@string/Languages"
+        android:textColor="#ACACAC"
+        android:textSize="17dp"
+        android:paddingLeft="17dp">
+    </TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Spinner
+        android:id="@+id/language_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:paddingLeft="10dp"
+        android:spinnerMode="dialog"
+        android:background="@drawable/custom_edge">
+    </Spinner>
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/icon_profile_1">
+    </ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/E_mail_Address"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/e_mail_address_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/e_mail_address_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="15dp"
+        android:hint="@string/example_email_com"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:background="@drawable/custom_edge"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/icon_email_address_custom"
+        android:inputType="textEmailAddress">
+    </EditText>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/Password"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/password_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <EditText
+            android:id="@+id/password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:paddingLeft="15dp"
+            android:hint="123456789"
+            android:textSize="17dp"
+            android:textColor="#ACACAC"
+            android:background="@drawable/custom_edge"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/icon_lock_custom"
+            android:inputType="textPassword">
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/password_open_close_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_password_close"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="63dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right">
+        </ImageButton>
+    </RelativeLayout>
+
+    <Switch
+        android:id="@+id/remember_me_switch_compat"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/Remember_me"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:layout_gravity="center"
+        tools:ignore="UseSwitchCompatOrMaterialXml">
+    </Switch>
+
+    <Switch
+        android:id="@+id/debug_mode_switch_compat"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/Debug_Mode"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:layout_gravity="center"
+        tools:ignore="UseSwitchCompatOrMaterialXml">
+    </Switch>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="125dp"
+        android:text="@string/Login">
+    </Button>
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="125dp"
+        android:text="@string/Register">
+    </Button>
+</LinearLayout>

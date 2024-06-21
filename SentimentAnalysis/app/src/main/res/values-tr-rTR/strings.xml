@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SentimentAnalysis</string>
+
+    <!--RegisterPageActivity, ProfilePageActivity, MainActivity-->
+    <string name="Empty">"Boş!"</string>
+    <string name="Not_the_same">"Aynı değil!"</string>
+    <string name="At_least_7">"En az 7!"</string>
+    <string name="Invalid_email">"Geçersiz email"</string>
+    <string name="Registration_Successful">"Kayıt başarılı!"</string>
+    <string name="Yes">"Evet"</string>
+    <string name="No">"Hayır"</string>
+    <string name="Delete_Account">"Hesabı Sil"</string>
+    <string name="Do_you_want_to_delete_your_account">"Hesabınızı silmek istiyor musunuz?"</string>
+    <string name="Update_Account">"Hesabı Güncelle"</string>
+    <string name="Do_you_want_to_update_your_account">"Hesabınızı güncellemek istiyor musunuz?"</string>
+    <string name="Wrong_entry">"Yanlış giriş!"</string>
+    <string name="Login_Successful">"Giriş başarılı!"</string>
+
+    <!--Device permissions-->
+    <string name="Manage_External_Storage_permission_granted">"Harici Depolamayı Yönetme izni verildi!"</string>
+    <string name="Manage_External_Storage_permission_denied">"Harici Depolamayı Yönetme izni reddedildi!"</string>
+    <string name="Write_External_Storage_permission_granted">"Harici Depolama Yazma izni verildi!"</string>
+    <string name="Write_External_Storage_permission_denied">"Harici Depolama Yazma izni reddedildi!"</string>
+    <string name="Read_External_Storage_permission_granted">"Harici Depolama Okuma izni verildi!"</string>
+    <string name="Read_External_Storage_permission_denied">"Harici Depolama Okuma izni reddedildi!"</string>
+    <string name="Camera_permission_granted">"Kamera izni verildi!"</string>
+    <string name="Camera_permission_denied">"Kamera izni reddedildi!"</string>
+
+    <!--Logs-->
+    <string name="Facial_Expression_Classifier_is_loaded">"Yüz İfadesi Sınıflandırıcısı yüklendi."</string>
+    <string name="Facial_Expression_Model_is_loaded">"Yüz İfadesi Modeli yüklendi."</string>
+    <string name="Application_is_starting">"Uygulama başlıyor."</string>
+    <string name="Application_failed_to_start">"Uygulama başlatılamadı!"</string>
+    <string name="Is_the_emotion_analyzed_correct">"Duygu analizi doğru mu?"</string>
+    <string name="Would_you_like_to_take_a_picture">"Duygularınıza uygun öneriler alabilmek için bir resim gerekli. Fotoğraf çekmek ister misiniz?"</string>
+
+    <!--Emotions-->
+    <string name="No_Emotion">"Duygu yok"</string>
+    <string name="Surprise">"Sürpriz"</string>
+    <string name="Fear">"Korku"</string>
+    <string name="Angry">"Sinirli"</string>
+    <string name="Neutral">"Doğal"</string>
+    <string name="Sad">"Üzgün"</string>
+    <string name="Disgust">"İğrenme"</string>
+    <string name="Happy">"Mutlu"</string>
+
+    <!--Categories-->
+    <string name="Musics">"Müzikler"</string>
+    <string name="Series">"Diziler"</string>
+    <string name="Movies">"Filmler"</string>
+    <string name="Books">"Kitaplar"</string>
+    <string name="Activities">"Aktiviteler"</string>
+
+    <!--FilterPageActivity-->
+    <string name="different_musics_were_selected_according_to_your_feelings">"Duygularınıza göre 5 farklı müzik seçildi."</string>
+    <string name="different_series_were_selected_according_to_your_feelings">"Duygularınıza göre 5 farklı dizi seçildi."</string>
+    <string name="different_movies_were_selected_according_to_your_feelings">"Duygularınıza göre 5 farklı film seçildi."</string>
+    <string name="different_books_were_selected_according_to_your_feelings">"Duygularınıza göre 5 farklı kitap seçildi."</string>
+    <string name="different_activities_were_selected_according_to_your_feelings">"Duygularınıza göre 5 farklı aktivite seçildi."</string>
+
+    <string name="Position">"Pozisyon "</string>
+    <string name="Title">"Başlık "</string>
+    <string name="Description">"Tanım "</string>
+
+    <!--SuggestionPageActivity-->
+    <string name="Categories">"Kategoriler"</string>
+    <string name="Current_Mood">"Şu Anki Ruh Hali"</string>
+    <string name="Make_the_suggestions_age_appropriate">"Önerileri yaşa uygun hale getir!"</string>
+    <string name="Make_the_suggestions_gender_appropriate">"Önerileri cinsiyete uygun hale getir!"</string>
+    <string name="Make_the_suggestions_like_old_nice_suggestions">"Önerileri eski güzel öneriler gibi yap!"</string>
+
+    <string name="music">"müzik"</string>
+    <string name="series">"dizi"</string>
+    <string name="movie">"film"</string>
+    <string name="book">"kitap"</string>
+    <string name="activity">"aktivite"</string>
+
+    <string name="query_description">"%1$s hakkında kısa bir açıklama ver."</string>
+
+    <string name="query_age_and_gender_and_liked">"Ben %1$d yaşındayım ve cinsiyetim %2$s. Bana yaşıma ve cinsiyetime uygun %6$s benzeri %3$d %4$s %5$s ismi ver."</string>
+    <string name="query_age_and_gender">"Ben %1$d yaşındayım ve cinsiyetim %2$s. Bana yaşıma ve cinsiyetime uygun rastgele %3$d %4$s %5$s ismi ver."</string>
+    <string name="query_age_and_liked">"Ben %1$d yaşındayım. Bana yaşıma uygun %5$s benzeri %2$d %3$s %4$s ismi ver."</string>
+    <string name="query_age">"Ben %1$d yaşındayım. Bana yaşıma uygun rastgele %2$d %3$s %4$s ismi ver."</string>
+    <string name="query_gender_and_liked">"Benim cinsiyetim %1$s. Bana cinsiyetime uygun %5$s benzeri %2$d %3$s %4$s ismi ver."</string>
+    <string name="query_gender">"Benim cinsiyetim %1$s. Bana cinsiyetime uygun rastgele %2$d %3$s %4$s ismi ver."</string>
+    <string name="query_liked">"Bana %4$s benzeri %1$d %2$s %3$s ismi ver."</string>
+    <string name="query">"Bana rastgele %1$d %2$s %3$s ismi ver."</string>
+
+    <!--HomePageActivity-->
+    <string name="Welcome">"Hoş geldin"</string>
+    <string name="Username">"Kullanıcı adı"</string>
+    <string name="Camera">"Kamera"</string>
+    <string name="Statistics">"İstatistikler"</string>
+    <string name="Suggestions">"Öneriler"</string>
+    <string name="Profile">"Profil"</string>
+    <string name="Exit">"Çıkış yap"</string>
+
+    <!--activity_main-->
+    <string name="Choose_app_language">"Uygulama dilini seç"</string>
+    <string name="Languages">"Diller"</string>
+    <string name="E_mail_Address">"E-mail Adresi"</string>
+    <string name="example_email_com">"örnek@email.com"</string>
+    <string name="Password">"Şifre"</string>
+    <string name="Remember_me">"Beni Hatırla!"</string>
+    <string name="Debug_Mode">"Hata Ayıklama Modu"</string>
+    <string name="Login">"Giriş yap"</string>
+    <string name="Register">"Kayıt ol"</string>
+
+    <!--activity_profile_page, activity_register_page-->
+    <string name="Name_Surname">"Ad Soyad"</string>
+    <string name="Age">"Yaş"</string>
+    <string name="Re_Password">"Te-Şifre"</string>
+    <string name="Gender">"Cinsiyet"</string>
+    <string name="Male">"Erkek"</string>
+    <string name="Female">"Kadın"</string>
+    <string name="Other">"Diğer"</string>
+    <string name="Delete">"Sil"</string>
+    <string name="Update">"Güncelle"</string>
+    <string name="Back">"Geri"</string>
+
+    <!--custom_dialog_1, custom_dialog_2-->
+    <string name="Your_emotional_state_is">"Duygu durumunuz"</string>
+    <string name="Recommendations_are_being_created">"Öneriler oluşturuluyor."</string>
+
+    <!--StatisticsPageActivity-->
+    <string name="suggestion_x">"Öneri: "</string>
+    <string name="category_x">"Kategori: "</string>
+    <string name="emotion_x">"Duygu: "</string>
+    <string name="date_x">"Tarih: "</string>
+    <string name="time_x">"Zaman: "</string>
+</resources>

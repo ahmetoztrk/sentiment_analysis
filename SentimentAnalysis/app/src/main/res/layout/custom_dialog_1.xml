@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:padding="50dp"
+    android:id="@+id/custom_dialog_constraint_layout">
+
+
+    <TextView
+        android:id="@+id/custom_dialog_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:textColor="#E91E63"
+        android:text="@string/Your_emotional_state_is"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/custom_dialog_constraint_layout">
+    </TextView>
+
+    <TextView
+        android:id="@+id/current_mood_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="#E91E63"
+        android:text="@string/No_Emotion"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/custom_dialog_title_text_view">
+    </TextView>
+
+    <ProgressBar
+        android:id="@+id/suggestion_loading_progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:indeterminateDrawable="@drawable/custom_progressbar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </ProgressBar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/Recommendations_are_being_created"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#9C27B0"
+        app:layout_constraintTop_toBottomOf="@+id/suggestion_loading_progress_bar">
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

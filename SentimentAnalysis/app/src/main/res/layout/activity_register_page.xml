@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/profile_image_view"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/icon_profile_1">
+    </ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/Username"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/username_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/username_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="15dp"
+        android:hint="@string/Name_Surname"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:background="@drawable/custom_edge"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/icon_username_custom"
+        android:inputType="text">
+    </EditText>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/E_mail_Address"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/e_mail_address_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/e_mail_address_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="15dp"
+        android:hint="@string/example_email_com"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:background="@drawable/custom_edge"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/icon_email_address_custom"
+        android:inputType="textEmailAddress">
+    </EditText>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/Age"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/age_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/age_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="15dp"
+        android:gravity="start|center"
+        android:hint="dd/mm/yyyy"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:background="@drawable/custom_edge"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/icon_age_custom">
+    </TextView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/Password"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/password_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="15dp"
+        android:hint="123456789"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:background="@drawable/custom_edge"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/icon_lock_custom"
+        android:inputType="textPassword">
+    </EditText>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/Re_Password"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/re_password_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/re_password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingLeft="15dp"
+        android:hint="123456789"
+        android:textSize="17dp"
+        android:textColor="#ACACAC"
+        android:background="@drawable/custom_edge"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/icon_lock_replay_custom"
+        android:inputType="textPassword">
+    </EditText>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/Gender"
+            android:textColor="#ACACAC"
+            android:textSize="17dp"
+            android:paddingLeft="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/gender_info_text_view"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:text=""
+            android:textColor="#FF8A8A"
+            android:textSize="17dp"
+            android:paddingRight="17dp">
+        </TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp">
+
+        <RadioButton
+            android:id="@+id/male_radio_btn"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/Male"
+            android:drawableStart="@drawable/icon_male"
+            android:textColor="#ACACAC"
+            android:textSize="17dp">
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/female_radio_btn"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/Female"
+            android:drawableStart="@drawable/icon_female"
+            android:textColor="#ACACAC"
+            android:textSize="17dp">
+        </RadioButton>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="125dp"
+        android:text="@string/Register">
+    </Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="125dp"
+        android:text="@string/Back">
+    </Button>
+</LinearLayout>

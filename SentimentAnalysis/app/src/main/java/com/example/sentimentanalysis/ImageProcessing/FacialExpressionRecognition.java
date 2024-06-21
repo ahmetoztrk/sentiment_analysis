@@ -1,16 +1,16 @@
-package com.example.sentimentanalysis;
+package com.example.sentimentanalysis.ImageProcessing;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.util.Log;
+import android.widget.Toast;
+import com.example.sentimentanalysis.Constants;
+import com.example.sentimentanalysis.R;
 
 import org.opencv.android.Utils;
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
@@ -36,10 +36,13 @@ public class FacialExpressionRecognition {
     int INPUT_SIZE;
     int height = 0;
     int width = 0;
-    GpuDelegate gpuDelegate = null;
+    GpuDelegate gpuDelegate;
     CascadeClassifier cascadeClassifier;
+    Context context;
 
-    FacialExpressionRecognition(AssetManager assetManager, Context context, String modelPath, int inputSize) throws IOException {
+    public FacialExpressionRecognition(AssetManager assetManager, Context context, String modelPath, int inputSize) throws IOException {
+        this.context = context;
+
         INPUT_SIZE = inputSize;
 
         Interpreter.Options options = new Interpreter.Options();
@@ -51,7 +54,9 @@ public class FacialExpressionRecognition {
 
         interpreter = new Interpreter(loadModelFile(assetManager,modelPath),options);
 
-        Log.d("facial_Expression","Model is loaded");
+        if(Constants.S_DEBUG_MODE) {
+            Toast.makeText(context, R.string.Facial_Expression_Model_is_loaded, Toast.LENGTH_SHORT).show();
+        }
 
         try {
             InputStream is = context.getResources().openRawResource(R.raw.haarcascade_frontalface_alt);
@@ -74,31 +79,26 @@ public class FacialExpressionRecognition {
 
             cascadeClassifier = new CascadeClassifier(mCascadeFile.getAbsolutePath());
 
-            Log.d("facial_Expression","Classifier is loaded");
+            if(Constants.S_DEBUG_MODE) {
+                Toast.makeText(context, R.string.Facial_Expression_Classifier_is_loaded, Toast.LENGTH_SHORT).show();
+            }
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
     public Mat recognizeImage(Mat mat_image){
-        if(CameraOpenCVActivity.CAMERA_INDEX == 0){
-            Core.flip(mat_image.t(),mat_image,1);
-
-        } else if (CameraOpenCVActivity.CAMERA_INDEX == 1) {
-            Core.flip(mat_image.t(),mat_image,0);
-        }
-
         Mat grayscaleImage = new Mat();
-        Imgproc.cvtColor(mat_image,grayscaleImage,Imgproc.COLOR_RGBA2GRAY);
+        Imgproc.cvtColor(mat_image, grayscaleImage, Imgproc.COLOR_RGBA2GRAY);
 
-        height=grayscaleImage.height();
-        width=grayscaleImage.width();
+        height = grayscaleImage.height();
+        width = grayscaleImage.width();
 
-        int absoluteFaceSize=(int)(height*0.1);
+        int absoluteFaceSize = (int)(height*0.1);
 
         MatOfRect faces = new MatOfRect();
 
-        if(cascadeClassifier!=null){
+        if(cascadeClassifier != null){
             cascadeClassifier.detectMultiScale(grayscaleImage,faces,1.1,2,2,
                     new Size(absoluteFaceSize,absoluteFaceSize),new Size());
         }
@@ -108,82 +108,65 @@ public class FacialExpressionRecognition {
         for(int i=0;i<faceArray.length;i++){
             Imgproc.rectangle(mat_image,faceArray[i].tl(),faceArray[i].br(),new Scalar(0,255,0,255),2);
 
-            Rect roi=new Rect((int) faceArray[i].tl().x,(int) faceArray[i].tl().y,
+            Rect roi = new Rect((int) faceArray[i].tl().x,(int) faceArray[i].tl().y,
                     ((int) faceArray[i].br().x)-((int) faceArray[i].tl().x),
                     ((int) faceArray[i].br().y)-((int) faceArray[i].tl().y));
 
             Mat cropped_rgba=new Mat(mat_image,roi);
 
-            Bitmap bitmap=null;
-            bitmap=Bitmap.createBitmap(cropped_rgba.cols(),cropped_rgba.rows(),Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(cropped_rgba.cols(), cropped_rgba.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(cropped_rgba,bitmap);
 
-            Bitmap scaledBitmap=Bitmap.createScaledBitmap(bitmap,48,48,false);
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap,48,48,false);
 
             ByteBuffer byteBuffer = convertBitmapToByteBuffer(scaledBitmap);
 
-            float[][] emotion=new float[1][1];
+            float[][] emotion = new float[1][1];
 
             interpreter.run(byteBuffer,emotion);
 
-            float emotion_v=(float)Array.get(Array.get(emotion,0),0);
-            Log.d("facial_expression","Output: "+ emotion_v);
+            float emotion_v = (float)Array.get(Array.get(emotion,0),0);
 
-            String emotion_s=get_emotion_text(emotion_v);
-
-            Imgproc.putText(mat_image,emotion_s+" ("+emotion_v+")",
-                    new Point((int)faceArray[i].tl().x+10,(int)faceArray[i].tl().y+20),
-                    1,3,new Scalar(0,0,255,150),2);
-        }
-
-        if(CameraOpenCVActivity.CAMERA_INDEX == 0){
-            Core.flip(mat_image.t(),mat_image,0);
-        }
-        else if (CameraOpenCVActivity.CAMERA_INDEX == 1) {
-            Core.flip(mat_image.t(),mat_image,0);
+            Constants.S_EMOTION = get_emotion_text(emotion_v);
         }
 
         return mat_image;
     }
 
     private String get_emotion_text(float emotion_v) {
-        String val="";
-
-        if(emotion_v>=0 & emotion_v<0.5){
-            val="Surprise";
+        if(emotion_v >= 0 & emotion_v < 0.5){
+            return context.getString(R.string.Surprise);
         }
-        else if(emotion_v>=0.5 & emotion_v <1.5){
-            val="Fear";
+        else if(emotion_v >= 0.5 & emotion_v < 1.5){
+            return context.getString(R.string.Fear);
         }
-        else if(emotion_v>=1.5 & emotion_v <2.5){
-            val="Angry";
+        else if(emotion_v >= 1.5 & emotion_v < 2.5){
+            return context.getString(R.string.Angry);
         }
-        else if(emotion_v>=2.5 & emotion_v <3.5){
-            val="Neutral";
+        else if(emotion_v >= 2.5 & emotion_v < 3.5){
+            return context.getString(R.string.Neutral);
         }
-        else if(emotion_v>=3.5 & emotion_v <4.5){
-            val="Sad";
+        else if(emotion_v >= 3.5 & emotion_v < 4.5){
+            return context.getString(R.string.Sad);
         }
-        else if(emotion_v>=4.5 & emotion_v <5.5){
-            val="Disgust";
+        else if(emotion_v >= 4.5 & emotion_v < 5.5){
+            return context.getString(R.string.Disgust);
         }
         else {
-            val="Happy";
+            return context.getString(R.string.Happy);
         }
-
-        return val;
     }
 
     private ByteBuffer convertBitmapToByteBuffer(Bitmap scaledBitmap) {
         ByteBuffer byteBuffer;
-        int size_image=INPUT_SIZE;
-        byteBuffer=ByteBuffer.allocateDirect(4*1*size_image*size_image*3);
-
+        int size_image = INPUT_SIZE;
+        byteBuffer = ByteBuffer.allocateDirect(12 * size_image*size_image);
 
         byteBuffer.order(ByteOrder.nativeOrder());
-        int[] intValues=new int[size_image*size_image];
+        int[] intValues = new int[size_image*size_image];
         scaledBitmap.getPixels(intValues,0,scaledBitmap.getWidth(),0,0,scaledBitmap.getWidth(),scaledBitmap.getHeight());
         int pixel=0;
+
         for(int i=0;i<size_image;++i){
             for (int j=0;j<size_image;++j){
                 final int val=intValues[pixel++];

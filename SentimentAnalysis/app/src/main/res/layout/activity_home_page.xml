@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:text="@string/Welcome"
+        android:textStyle="italic"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/black">
+    </TextView>
+
+    <TextView
+        android:id="@+id/welcome_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/Username"
+        android:textStyle="italic"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:textColor="@color/black">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/emotion_photoimage_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/icon_profile_1">
+    </ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/camera_btn"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@string/Camera"
+            android:layout_marginLeft="50dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center">
+        </Button>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/icon_camera"
+            android:layout_marginLeft="62dp"
+            android:layout_alignParentLeft="true">
+        </ImageView>
+
+        <Button
+            android:id="@+id/statistics_btn"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@string/Statistics"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center">
+        </Button>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/icon_statistic"
+            android:layout_marginRight="158dp"
+            android:layout_alignParentRight="true">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:id="@+id/suggestion_btn"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@string/Suggestions"
+            android:layout_marginLeft="50dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center">
+        </Button>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/icon_suggestion"
+            android:layout_marginLeft="62dp"
+            android:layout_alignParentLeft="true">
+        </ImageView>
+
+        <Button
+            android:id="@+id/profile_btn"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@string/Profile"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center">
+        </Button>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/icon_profile_2"
+            android:layout_marginRight="158dp"
+            android:layout_alignParentRight="true">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:id="@+id/exit_btn"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@string/Exit"
+            android:layout_marginLeft="125dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center">
+        </Button>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/icon_exit"
+            android:layout_marginLeft="145dp"
+            android:layout_alignParentLeft="true">
+        </ImageView>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Current_Mood"
+        android:textStyle="italic"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/black">
+    </TextView>
+
+    <TextView
+        android:id="@+id/current_mood_tv"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/No_Emotion"
+        android:textStyle="italic"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:textColor="@color/black" >
+    </TextView>
+</LinearLayout>

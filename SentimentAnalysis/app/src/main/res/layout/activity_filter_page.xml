@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/filter_page_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/Categories"
+        android:textStyle="italic"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/black">
+    </TextView>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/filter_page_vp"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
+        android:layout_centerInParent="true"
+        android:foregroundGravity="center"
+        android:overScrollMode="never">
+    </androidx.viewpager.widget.ViewPager>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Current_Mood"
+        android:textStyle="italic"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/black">
+    </TextView>
+
+    <TextView
+        android:id="@+id/current_mood_tv"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/No_Emotion"
+        android:textStyle="italic"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:textColor="@color/black" >
+    </TextView>
+
+    <CheckBox
+        android:id="@+id/suggestion_age_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Make_the_suggestions_age_appropriate"
+        android:textStyle="italic"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="20sp"
+        android:textColor="@color/black">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/suggestion_gender_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Make_the_suggestions_gender_appropriate"
+        android:textStyle="italic"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="20sp"
+        android:textColor="@color/black">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/suggestion_like_old_nice_suggestions_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Make_the_suggestions_like_old_nice_suggestions"
+        android:textStyle="italic"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="20sp"
+        android:textColor="@color/black">
+    </CheckBox>
+</LinearLayout>
